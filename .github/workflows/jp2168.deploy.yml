@@ -1,4 +1,4 @@
-name: Deploy Bustamante175 to GitHub Pages
+name: Deploy Javier Prado 2168 to GitHub Pages
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
       - run: npm ci
       - run: npm run build:pages
         env:
-          PAGES_BASE_PATH: /Bustamante175/
+          PAGES_BASE_PATH: /JP2168/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
