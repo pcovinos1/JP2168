@@ -1,190 +1,72 @@
-# Bustamante 175 Morada - MVP offline para sala de ventas
+# Javier Prado Oeste 2168 | Morada
 
-Aplicación web local-first para presentar el proyecto inmobiliario Bustamante 175 en tablet, iPad, laptop, computadora de escritorio y pantallas táctiles.
+Presentación comercial independiente basada en la experiencia UX/UI de Bustamante 175.
+El repositorio de trabajo es `pcovinos1/JP2168`; no se modifica el proyecto original.
 
-## Arquitectura propuesta
+## Estado del contenido
 
-- React + Vite + TypeScript para una app rápida y portable.
-- Tailwind CSS para una interfaz editorial, sobria y responsive.
-- PWA con `public/sw.js` y `manifest.webmanifest` para instalación y uso offline.
-- IndexedDB para guardar el contenido publicado en cada dispositivo.
-- JSZip para exportar e importar paquetes locales de actualización.
-- Datos publicados desde el administrador local en `public/content/project.json`.
-- Renders, planta típica y planos empaquetados en el JSON publicado.
+La identidad técnica está aislada. Los renders, mapa, puntos de interés, textos comerciales,
+38 tipologías y cinco planos generales siguen siendo material heredado pendiente de validación
+y reemplazo. No constituyen información comercial confirmada de JP2168.
+Las carpetas de planos conservan sus nombres de origen para no romper referencias existentes.
+El distrito y la certificación del contenido inicial están pendientes de confirmación.
 
-## Estructura de carpetas
+## Desarrollo y publicación
 
-```text
-public/
-  icon.svg
-  manifest.webmanifest
-  sw.js
-src/
-  assets/pdf-pages/        Imágenes extraídas del PDF
-  components/              Navegación, galería, planta y visor de planos
-  context/                 Estado global del proyecto
-  data/                    Contenido inicial
-  services/                IndexedDB, archivos, ZIP e importación/exportación
-  styles/                  Tailwind y estilos base
-  types/                   Interfaces TypeScript
-  App.tsx
-  main.tsx
-```
-
-## Instalación
-
-```bash
-npm install
-```
-
-Si aparece un error de permisos de caché de npm en la computadora, usar:
-
-```bash
-npm install --cache /private/tmp/bustamante-175-npm-cache
-```
-
-## Ejecutar en desarrollo
-
-```bash
+```sh
+npm ci
 npm run dev
-```
-
-Abrir la URL que aparece en la terminal. Normalmente será:
-
-```text
-http://localhost:5173/
-```
-
-## Generar versión de producción
-
-```bash
-npm run build
-```
-
-El resultado queda en la carpeta `dist/`.
-
-Para probar el build:
-
-```bash
+npm run build:pages
 npm run preview
 ```
 
-## Abrir en una computadora
+El build de Pages usa `/JP2168/` por defecto. Puede configurarse con `PAGES_BASE_PATH`.
+El workflow `.github/workflows/` compila y despliega `dist/` al enviar cambios a `main`.
+En GitHub, Pages debe usar GitHub Actions como origen. La configuración remota y el despliegue
+real deben verificarse en GitHub. URL prevista: https://pcovinos1.github.io/JP2168/
 
-Para uso local recomendado:
+## Arquitectura
 
-1. Instalar dependencias con `npm install`.
-2. Ejecutar `npm run dev` durante edición o `npm run preview` después del build.
-3. Abrir la URL local en Chrome, Edge, Safari o Firefox.
+- `src/App.tsx`: vistas comerciales, recorrido por imágenes y administrador.
+- `src/components/`: navegación, galería, planta con zonas porcentuales y visor con zoom.
+- `src/context/ProjectContext.tsx`: estado y sincronización del contenido publicado.
+- `src/data/projectIdentity.ts`: identidad y validación de pertenencia.
+- `src/data/initialProject.ts`: contenido mínimo de respaldo.
+- `public/content/project.json`: contenido maestro publicado.
+- `src/services/db.ts`: IndexedDB exclusiva de JP2168.
+- `src/services/files.ts`: exportación, importación y sincronización.
+- `public/sw.js`: caché exclusiva de JP2168, limitada a su ruta.
+- `scripts/generate-offline-manifest.mjs`: precache y revisión del worker por contenido del build.
 
-Para entregar una versión estable, copiar la carpeta del proyecto o publicar el contenido de `dist/` en un servidor local gratuito de la sala de ventas.
+La navegación usa estado React, sin rutas profundas. El mapa usa una imagen local con puntos
+porcentuales y filtros. No requiere una API cartográfica. Las zonas de la planta deben
+configurarse sobre los planos definitivos de JP2168.
 
-## Instalar como PWA
+## Offline y actualizaciones
 
-1. Ejecutar `npm run build`.
-2. Ejecutar `npm run preview -- --host 0.0.0.0`.
-3. Abrir la URL local en el navegador.
-4. Usar la opción del navegador “Instalar app”, “Agregar al Dock” o “Agregar a pantalla de inicio”.
-5. Abrir la app instalada una vez con conexión local.
-6. Esperar unos segundos para que la PWA guarde todos los archivos offline.
-7. Probar apagando internet o saliendo de la red.
-8. Luego puede utilizarse sin internet.
+Usar producción por HTTPS o localhost; el servidor de desarrollo no instala el service worker.
+Abrir con conexión y esperar la instalación completa antes de desconectar.
+El precache incluye los archivos publicados; los cambios del administrador se guardan en
+IndexedDB. La sincronización consulta versiones al iniciar, recuperar conexión, enfocar la app
+y cada 60 segundos. Solo se acepta el ID `javier-prado-oeste-2168`.
 
-En iPad, abrir desde Safari y usar “Compartir” > “Agregar a pantalla de inicio”.
+El administrador conserva el PIN inicial `6640`. Permite exportar un ZIP propio con
+`javier-prado-oeste-2168-project.json` o descargar `project.json` para reemplazar el maestro
+publicado. Los ZIP de otros proyectos se rechazan. Los cambios locales no se suben a GitHub
+automáticamente. Al publicar contenido nuevo se debe incrementar la versión.
 
-Importante: no instales la tablet desde `npm run dev`. El modo desarrollo no prepara la PWA offline completa. Usa siempre `npm run build` y luego `npm run preview -- --host 0.0.0.0`.
+Cada build genera una revisión de caché. El worker elimina únicamente revisiones antiguas
+con el prefijo de JP2168 y no lee ni elimina cachés de otros proyectos. La copia anterior de
+Bustamante puede seguir teniendo su propia lógica de limpieza global: este repositorio no
+puede corregirla sin modificar aquel proyecto.
 
-## Administrador local
+## Verificación
 
-Acceso desde el botón discreto de la portada o desde el botón de engranaje.
-
-PIN inicial:
-
-```text
-6640
+```sh
+npm run build:pages
+node scripts/check-plan-catalog.mjs
+node scripts/check-project-isolation.mjs
 ```
 
-Desde el administrador se puede:
-
-- Editar información general.
-- Cambiar metrajes, dormitorios, baños, ambientes y departamentos.
-- Activar o desactivar tipologías.
-- Reemplazar el plano de la tipología seleccionada.
-- Configurar zonas clicables de la planta típica con porcentajes.
-- Publicar cambios localmente.
-- Exportar una actualización ZIP.
-- Descargar `project.json` para publicar contenido maestro en GitHub.
-- Importar una actualización ZIP.
-- Sincronizar contenido desde GitHub.
-- Restaurar el contenido inicial.
-
-## Actualizar contenido
-
-### Opción A: actualización manual por ZIP
-
-1. Entrar al administrador.
-2. Editar textos, tipologías o planos.
-3. Revisar la vista previa dentro de la app.
-4. Presionar “Publicar cambios”.
-5. Presionar “Exportar actualización”.
-6. Llevar el ZIP a otra tablet o computadora.
-7. En la segunda instalación, entrar al administrador y elegir “Importar actualización”.
-
-### Opción B: contenido maestro en GitHub
-
-Esta opción permite que otras computadoras o tablets reciban el contenido nuevo desde GitHub cuando tengan internet, y luego lo mantengan guardado offline.
-
-1. En la computadora principal, entrar al administrador.
-2. Editar fotos, textos, planos, logo, mapa o puntos de interés.
-3. Presionar “Publicar cambios”.
-4. Presionar “Descargar project.json para GitHub”.
-5. En GitHub Desktop, abrir el repositorio.
-6. Reemplazar o agregar el archivo:
-
-```text
-public/content/project.json
-```
-
-7. Hacer commit y push.
-8. Esperar a que GitHub Pages publique la nueva versión.
-9. En cada tablet o computadora, abrir la app con internet.
-10. La app revisará automáticamente si existe una versión más nueva en GitHub.
-11. Si la encuentra, la guarda en IndexedDB y queda disponible offline.
-
-También se puede entrar al administrador y presionar “Sincronizar desde GitHub” para forzar la revisión.
-
-La sincronización automática ocurre:
-
-- Al abrir la app.
-- Al volver a enfocar la app.
-- Al recuperar conexión a internet.
-- Cada 60 segundos mientras la app esté abierta.
-
-Importante: GitHub no recibe automáticamente las fotos subidas desde el administrador. Primero se debe descargar `project.json` y subirlo al repositorio.
-
-## Copia de seguridad
-
-Usar “Exportar actualización” antes de reemplazar planos o importar contenido nuevo.
-
-El ZIP contiene:
-
-- `bustamante-175-project.json`
-- versión
-- fecha de publicación
-- textos
-- rutas o archivos embebidos en formato Data URL
-- configuración de planta típica
-- tipologías y planos reemplazados desde el administrador
-
-## Datos publicados
-
-Incluye:
-
-- Nombre: Bustamante 175.
-- Desarrollador: Morada.
-- Ubicación: Bustamante 175, Barranco.
-- Textos, imágenes, áreas comunes, tipologías y configuración exportadas desde el administrador local.
-- Áreas: desde 60 m² hasta 112 m² según ficha del PDF.
-- Áreas comunes: lobby, sala de espera, coworking, gimnasio, SUM, zona de parrillas, piscina, pet-wash, laundry-room y jardín.
-
-Cuando un dato no era inequívoco en el PDF, se dejó editable o marcado como contenido demostrativo.
+Antes de usar en ventas: probar instalación y recarga sin conexión, mapa, galerías, planos,
+exportación/importación, actualizaciones y convivencia con el sitio original en el navegador.

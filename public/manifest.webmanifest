@@ -1,7 +1,7 @@
 {
-  "name": "Bustamante 175 Morada",
-  "short_name": "Bustamante 175",
-  "description": "Aplicación offline para sala de ventas del proyecto Bustamante 175 de Morada.",
+  "name": "Javier Prado Oeste 2168 | Morada",
+  "short_name": "JP2168",
+  "description": "Presentación comercial offline de Javier Prado Oeste 2168 de Morada.",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fbf7f1",
@@ -14,5 +14,7 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "id": "./",
+  "scope": "./"
 }

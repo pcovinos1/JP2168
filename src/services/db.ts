@@ -1,10 +1,11 @@
+import { PROJECT_ID, assertProjectIdentity } from "../data/projectIdentity";
 import { openDB } from "idb";
 import type { Project } from "../types/project";
 import { initialProject } from "../data/initialProject";
 import { fetchRemoteProject } from "./files";
 import { migratePlans } from "../data/migratePlans";
 
-const DB_NAME = "bustamante-175-local";
+const DB_NAME = `${PROJECT_ID}-local`;
 const STORE = "project";
 const PROJECT_KEY = "active";
 
@@ -19,7 +20,7 @@ export async function getProject(): Promise<Project> {
   if (!db) return fetchRemoteProject().catch(() => null).then((project) => migratePlans(project ?? initialProject));
 
   const saved = await db.get(STORE, PROJECT_KEY).catch(() => undefined);
-  if (saved) {
+  if (saved && saved.id === PROJECT_ID) {
     const normalized = migratePlans(normalizeProject(saved as Project));
     await db.put(STORE, normalized, PROJECT_KEY).catch(() => undefined);
     return normalized;
@@ -31,6 +32,7 @@ export async function getProject(): Promise<Project> {
 }
 
 export async function saveProject(project: Project): Promise<void> {
+  assertProjectIdentity(project);
   const db = await safeDb();
   if (!db) return;
   await db.put(STORE, project, PROJECT_KEY);

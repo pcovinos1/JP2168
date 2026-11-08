@@ -36,7 +36,7 @@ export default function App() {
   };
 
   if (loading || !project) {
-    return <div className="grid min-h-screen place-items-center bg-paper text-ink">Cargando Bustamante 175...</div>;
+    return <div className="grid min-h-screen place-items-center bg-paper text-ink">Cargando Javier Prado Oeste 2168...</div>;
   }
 
   return (
