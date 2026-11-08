@@ -72,6 +72,10 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
     };
   }, [syncFromRemote]);
 
+  useEffect(() => {
+    if (project) document.title = `${project.name} | ${project.developer}`;
+  }, [project?.name, project?.developer]);
+
   const value = useMemo(() => ({ project, loading, updateProject, reload, syncFromRemote }), [project, loading, updateProject, reload, syncFromRemote]);
   return <ProjectContext.Provider value={value}>{children}</ProjectContext.Provider>;
 }
