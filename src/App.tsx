@@ -762,19 +762,19 @@ function ParallaxStory({ eyebrow, title, text, gallery, labels, onOpenGallery }:
 }
 
 function DepartmentsPage({ project, selectedTypologyId, setSelectedTypologyId, onNavigate, onOpenVirtualTour }: { project: Project; selectedTypologyId: string; setSelectedTypologyId: (id: string) => void; onNavigate: (view: ViewKey) => void; onOpenVirtualTour: () => void }) {
-  const [bedrooms, setBedrooms] = useState("Todos");
+  const [format, setFormat] = useState("Todos");
   const [area, setArea] = useState("Todas");
   const [generalPlanId, setGeneralPlanId] = useState("");
   const generalPlan = project.generalPlans?.find(plan => plan.id === generalPlanId);
   const typologies = project.typologies.filter((item) => item.active);
-  const filtered = typologies.filter((item) => (bedrooms === "Todos" || item.bedrooms === Number(bedrooms)) && (area === "Todas" || (area === "<100" ? item.areaM2 < 100 : area === "100-150" ? item.areaM2 >= 100 && item.areaM2 <= 150 : item.areaM2 > 150)));
+  const filtered = typologies.filter((item) => (format === "Todos" || item.format === format) && (area === "Todas" || (area === "<100" ? item.areaM2 < 100 : area === "100-150" ? item.areaM2 >= 100 && item.areaM2 <= 150 : item.areaM2 > 150)));
   return (
     <section className="page-wrap">
       <PageHeading eyebrow="Explorador" title="Departamentos y tipologías" />
       <div className="mb-5 flex flex-wrap gap-3">
-        {["Todos", "1", "2", "3"].map((value) => (
-          <button key={value} className={`pill ${bedrooms === value ? "pill-active" : ""}`} onClick={() => setBedrooms(value)} type="button">
-            {value === "Todos" ? "Todos los dormitorios" : `${value} dorm.`}
+        {["Todos", "Flat", "Duplex"].map((value) => (
+          <button key={value} className={`pill ${format === value ? "pill-active" : ""}`} onClick={() => setFormat(value)} type="button" aria-pressed={format === value}>
+            {value === "Todos" ? "Todos" : value === "Flat" ? "Flats" : "Dúplex"}
           </button>
         ))}
         {["Todas", "<100", "100-150", "150+"].map((value) => (
