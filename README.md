@@ -28,7 +28,7 @@ real deben verificarse en GitHub. URL prevista: https://pcovinos1.github.io/JP21
 
 ## Arquitectura
 
-- `src/App.tsx`: vistas comerciales, recorrido por imágenes y administrador.
+- `src/App.tsx`: vistas comerciales y administrador.
 - `src/components/`: navegación, galería, planta con zonas porcentuales y visor con zoom.
 - `src/context/ProjectContext.tsx`: estado y sincronización del contenido publicado.
 - `src/data/projectIdentity.ts`: identidad y validación de pertenencia.
