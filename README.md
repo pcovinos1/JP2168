@@ -5,10 +5,11 @@ El repositorio de trabajo es `pcovinos1/JP2168`; no se modifica el proyecto orig
 
 ## Estado del contenido
 
-La identidad técnica está aislada. Los renders, mapa, puntos de interés, textos comerciales,
-38 tipologías y cinco planos generales siguen siendo material heredado pendiente de validación
-y reemplazo. No constituyen información comercial confirmada de JP2168.
-Las carpetas de planos conservan sus nombres de origen para no romper referencias existentes.
+La identidad técnica está aislada. Los renders, mapa, puntos de interés y textos comerciales siguen pendientes de validación y reemplazo.
+El catálogo de planos ya corresponde a PLANOS-JP.pdf: 14 tipologías y siete planos generales.
+Las áreas y dimensiones mantienen el carácter referencial indicado en las fichas.
+Los planos se guardan en `public/content/plans/jp2168-2026-11/`.
+Una migración reemplaza solo el catálogo heredado en instalaciones existentes y conserva el resto del contenido local.
 El distrito y la certificación del contenido inicial están pendientes de confirmación.
 
 ## Desarrollo y publicación

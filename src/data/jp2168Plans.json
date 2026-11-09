@@ -1,0 +1,631 @@
+{
+  "typologies": [
+    {
+      "id": "jp-flat-x-01",
+      "code": "Flat X-01",
+      "areaM2": 135,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-01.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-01-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-01-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "301",
+          "label": "301"
+        },
+        {
+          "id": "401",
+          "label": "401"
+        },
+        {
+          "id": "501",
+          "label": "501"
+        },
+        {
+          "id": "601",
+          "label": "601"
+        },
+        {
+          "id": "701",
+          "label": "701"
+        },
+        {
+          "id": "801",
+          "label": "801"
+        },
+        {
+          "id": "901",
+          "label": "901"
+        },
+        {
+          "id": "1001",
+          "label": "1001"
+        },
+        {
+          "id": "1101",
+          "label": "1101"
+        },
+        {
+          "id": "1201",
+          "label": "1201"
+        },
+        {
+          "id": "1301",
+          "label": "1301"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 2. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-duplex-x-02",
+      "code": "Dúplex X-02",
+      "areaM2": 133,
+      "bedrooms": 3,
+      "format": "Duplex",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "402",
+          "label": "402"
+        },
+        {
+          "id": "602",
+          "label": "602"
+        },
+        {
+          "id": "802",
+          "label": "802"
+        },
+        {
+          "id": "1002",
+          "label": "1002"
+        },
+        {
+          "id": "1202",
+          "label": "1202"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 3. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-03",
+      "code": "Flat X-03",
+      "areaM2": 131,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-03.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-03-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-03-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "203",
+          "label": "203"
+        },
+        {
+          "id": "302",
+          "label": "302"
+        },
+        {
+          "id": "403",
+          "label": "403"
+        },
+        {
+          "id": "502",
+          "label": "502"
+        },
+        {
+          "id": "603",
+          "label": "603"
+        },
+        {
+          "id": "702",
+          "label": "702"
+        },
+        {
+          "id": "803",
+          "label": "803"
+        },
+        {
+          "id": "902",
+          "label": "902"
+        },
+        {
+          "id": "1003",
+          "label": "1003"
+        },
+        {
+          "id": "1102",
+          "label": "1102"
+        },
+        {
+          "id": "1203",
+          "label": "1203"
+        },
+        {
+          "id": "1302",
+          "label": "1302"
+        },
+        {
+          "id": "1403",
+          "label": "1403"
+        },
+        {
+          "id": "1502",
+          "label": "1502"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 4. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-04",
+      "code": "Flat X-04",
+      "areaM2": 110,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-04.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-04-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-04-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "204",
+          "label": "204"
+        },
+        {
+          "id": "303",
+          "label": "303"
+        },
+        {
+          "id": "404",
+          "label": "404"
+        },
+        {
+          "id": "503",
+          "label": "503"
+        },
+        {
+          "id": "604",
+          "label": "604"
+        },
+        {
+          "id": "703",
+          "label": "703"
+        },
+        {
+          "id": "804",
+          "label": "804"
+        },
+        {
+          "id": "903",
+          "label": "903"
+        },
+        {
+          "id": "1004",
+          "label": "1004"
+        },
+        {
+          "id": "1103",
+          "label": "1103"
+        },
+        {
+          "id": "1204",
+          "label": "1204"
+        },
+        {
+          "id": "1303",
+          "label": "1303"
+        },
+        {
+          "id": "1404",
+          "label": "1404"
+        },
+        {
+          "id": "1503",
+          "label": "1503"
+        },
+        {
+          "id": "1604",
+          "label": "1604"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 5. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-05",
+      "code": "Flat X-05",
+      "areaM2": 80,
+      "bedrooms": 2,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-05.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-05-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-05-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "205",
+          "label": "205"
+        },
+        {
+          "id": "304",
+          "label": "304"
+        },
+        {
+          "id": "405",
+          "label": "405"
+        },
+        {
+          "id": "504",
+          "label": "504"
+        },
+        {
+          "id": "605",
+          "label": "605"
+        },
+        {
+          "id": "704",
+          "label": "704"
+        },
+        {
+          "id": "805",
+          "label": "805"
+        },
+        {
+          "id": "904",
+          "label": "904"
+        },
+        {
+          "id": "1005",
+          "label": "1005"
+        },
+        {
+          "id": "1104",
+          "label": "1104"
+        },
+        {
+          "id": "1205",
+          "label": "1205"
+        },
+        {
+          "id": "1304",
+          "label": "1304"
+        },
+        {
+          "id": "1405",
+          "label": "1405"
+        },
+        {
+          "id": "1504",
+          "label": "1504"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 6. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-06",
+      "code": "Flat X-06",
+      "areaM2": 181,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-06.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-06-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-06-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "102",
+          "label": "102"
+        }
+      ],
+      "features": {
+        "terrace": true,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 7. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-07",
+      "code": "Flat X-07",
+      "areaM2": 134,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-07.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-07-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-07-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1401",
+          "label": "1401"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 8. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-08",
+      "code": "Flat X-08",
+      "areaM2": 132,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-08.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-08-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-08-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1501",
+          "label": "1501"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 9. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-duplex-x-09",
+      "code": "Dúplex X-09",
+      "areaM2": 264,
+      "bedrooms": 3,
+      "format": "Duplex",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1601",
+          "label": "1601"
+        }
+      ],
+      "features": {
+        "terrace": true,
+        "study": true,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 10. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-duplex-x-10",
+      "code": "Dúplex X-10",
+      "areaM2": 170,
+      "bedrooms": 2,
+      "format": "Duplex",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1602",
+          "label": "1602"
+        }
+      ],
+      "features": {
+        "terrace": true,
+        "study": false,
+        "walkInCloset": false
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 11. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-duplex-x-11",
+      "code": "Dúplex X-11",
+      "areaM2": 218,
+      "bedrooms": 3,
+      "format": "Duplex",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1603",
+          "label": "1603"
+        }
+      ],
+      "features": {
+        "terrace": true,
+        "study": true,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 12. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-duplex-x-12",
+      "code": "Dúplex X-12",
+      "areaM2": 157,
+      "bedrooms": 2,
+      "format": "Duplex",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1605",
+          "label": "1605"
+        }
+      ],
+      "features": {
+        "terrace": true,
+        "study": true,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 13. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-13",
+      "code": "Flat X-13",
+      "areaM2": 165,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-13.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-13-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-13-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "101",
+          "label": "101"
+        }
+      ],
+      "features": {
+        "terrace": true,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 14. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-duplex-x-14",
+      "code": "Dúplex X-14",
+      "areaM2": 112,
+      "bedrooms": 3,
+      "format": "Duplex",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "202",
+          "label": "202"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 15. Áreas y dimensiones referenciales según ficha."
+    }
+  ],
+  "generalPlans": [
+    {
+      "id": "jp-planta-tipica",
+      "title": "Planta típica · Pisos 4 al 13",
+      "planSrc": "content/plans/jp2168-2026-11/planta-tipica.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/planta-tipica-thumb.webp",
+      "updatedAt": "2026-11-08"
+    },
+    {
+      "id": "jp-sotano-01",
+      "title": "Sótano 01",
+      "planSrc": "content/plans/jp2168-2026-11/sotano-01.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-01-thumb.webp",
+      "updatedAt": "2026-11-08"
+    },
+    {
+      "id": "jp-sotano-02",
+      "title": "Sótano 02",
+      "planSrc": "content/plans/jp2168-2026-11/sotano-02.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-02-thumb.webp",
+      "updatedAt": "2026-11-08"
+    },
+    {
+      "id": "jp-sotano-03",
+      "title": "Sótano 03",
+      "planSrc": "content/plans/jp2168-2026-11/sotano-03.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-03-thumb.webp",
+      "updatedAt": "2026-11-08"
+    },
+    {
+      "id": "jp-sotano-04",
+      "title": "Sótano 04",
+      "planSrc": "content/plans/jp2168-2026-11/sotano-04.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-04-thumb.webp",
+      "updatedAt": "2026-11-08"
+    },
+    {
+      "id": "jp-piso-1",
+      "title": "Piso 1",
+      "planSrc": "content/plans/jp2168-2026-11/piso-1.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/piso-1-thumb.webp",
+      "updatedAt": "2026-11-08"
+    },
+    {
+      "id": "jp-azotea",
+      "title": "Azotea",
+      "planSrc": "content/plans/jp2168-2026-11/azotea.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/azotea-thumb.webp",
+      "updatedAt": "2026-11-08"
+    }
+  ],
+  "floorPlan": {
+    "id": "jp-planta-tipica",
+    "title": "Planta típica · Pisos 4 al 13",
+    "imageSrc": "content/plans/jp2168-2026-11/planta-tipica.webp",
+    "hotspots": [],
+    "updatedAt": "2026-11-08"
+  },
+  "areaRange": "Desde 80 m² hasta 264 m²",
+  "typologySummary": "14 tipologías de 2 y 3 dormitorios: flats y dúplex.",
+  "plansRevision": "jp2168-planos-2026-11-08"
+}

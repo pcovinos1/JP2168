@@ -24,7 +24,7 @@ const menuItems: Array<{ view: ViewKey; title: string; text: string }> = [
 export default function App() {
   const { project, loading, updateProject, reload, syncFromRemote } = useProject();
   const [view, setView] = useState<ViewKey>("home");
-  const [selectedTypologyId, setSelectedTypologyId] = useState("a-1");
+  const [selectedTypologyId, setSelectedTypologyId] = useState("jp-flat-x-01");
   const [gallery, setGallery] = useState<{ images: GalleryImage[]; index: number } | null>(null);
   const [poiFilter, setPoiFilter] = useState("Todos");
   const [virtualTourOpen, setVirtualTourOpen] = useState(false);
@@ -767,7 +767,7 @@ function DepartmentsPage({ project, selectedTypologyId, setSelectedTypologyId, o
   const [generalPlanId, setGeneralPlanId] = useState("");
   const generalPlan = project.generalPlans?.find(plan => plan.id === generalPlanId);
   const typologies = project.typologies.filter((item) => item.active);
-  const filtered = typologies.filter((item) => (bedrooms === "Todos" || item.bedrooms === Number(bedrooms)) && (area === "Todas" || (area === "<60" ? item.areaM2 < 60 : area === "60-65" ? item.areaM2 >= 60 && item.areaM2 <= 65 : item.areaM2 > 65)));
+  const filtered = typologies.filter((item) => (bedrooms === "Todos" || item.bedrooms === Number(bedrooms)) && (area === "Todas" || (area === "<100" ? item.areaM2 < 100 : area === "100-150" ? item.areaM2 >= 100 && item.areaM2 <= 150 : item.areaM2 > 150)));
   return (
     <section className="page-wrap">
       <PageHeading eyebrow="Explorador" title="Departamentos y tipologías" />
@@ -777,9 +777,9 @@ function DepartmentsPage({ project, selectedTypologyId, setSelectedTypologyId, o
             {value === "Todos" ? "Todos los dormitorios" : `${value} dorm.`}
           </button>
         ))}
-        {["Todas", "<60", "60-65", "66+"].map((value) => (
+        {["Todas", "<100", "100-150", "150+"].map((value) => (
           <button key={value} className={`pill ${area === value ? "pill-active" : ""}`} onClick={() => setArea(value)} type="button">
-            {value === "Todas" ? "Todas las áreas" : value === "<60" ? "Menos de 60 m²" : value === "60-65" ? "60 a 65 m²" : "Más de 65 m²"}
+            {value === "Todas" ? "Todas las áreas" : value === "<100" ? "Menos de 100 m²" : value === "100-150" ? "100 a 150 m²" : "Más de 150 m²"}
           </button>
         ))}
         <button className="primary-touch ml-auto" onClick={() => onNavigate("floor")} type="button">

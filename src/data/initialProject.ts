@@ -1,3 +1,4 @@
+import plans from "./jp2168Plans.json";
 import type { Project } from "../types/project";
 
 const today = "2026-11-08";
@@ -15,8 +16,6 @@ export const initialProject: Project = {
   architect: "Morada",
   certification: "Por confirmar",
   status: "En venta",
-  areaRange: "Consulta disponibilidad",
-  typologySummary: "Departamentos disponibles segun inventario comercial.",
   sharedAreas: [],
   leedAttributes: [],
   about: {
@@ -44,19 +43,12 @@ export const initialProject: Project = {
       images: [{ id: "fachada-fallback", title: "Javier Prado Oeste 2168", src: fallbackImage, category: "fachada" }]
     }
   ],
-  floorPlan: {
-    id: "planta-fallback",
-    title: "Planta",
-    imageSrc: fallbackImage,
-    hotspots: [],
-    updatedAt: today
-  },
-  typologies: [],
   pointsOfInterest: [],
   version: {
     version: "1.0",
     publishedAt: today,
     changes: [{ id: "fallback", date: today, text: "Contenido base de Javier Prado Oeste 2168." }]
   },
+  ...plans as Pick<Project, "typologies" | "generalPlans" | "floorPlan" | "areaRange" | "typologySummary" | "plansRevision">,
   adminPin: "6640"
 };

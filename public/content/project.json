@@ -10,8 +10,8 @@
   "architect": "Metrópolis Arquitectura",
   "certification": "",
   "status": "Lanzamiento",
-  "areaRange": "40 a 78 m²",
-  "typologySummary": "Flats y TH de 1 y 2 dormitorios",
+  "areaRange": "Desde 80 m² hasta 264 m²",
+  "typologySummary": "14 tipologías de 2 y 3 dormitorios: flats y dúplex.",
   "sharedAreas": [
     "PISCINA",
     "ZONA DE PARRILLAS",
@@ -275,31 +275,25 @@
     }
   ],
   "floorPlan": {
-    "id": "bustamante-location",
-    "title": "Ubicación referencial en planta",
-    "imageSrc": "content/plans/bustamante/flat-x-01-location.webp",
+    "id": "jp-planta-tipica",
+    "title": "Planta típica · Pisos 4 al 13",
+    "imageSrc": "content/plans/jp2168-2026-11/planta-tipica.webp",
     "hotspots": [],
-    "updatedAt": "2026-09-08"
+    "updatedAt": "2026-11-08"
   },
   "typologies": [
     {
-      "id": "flat-x-01",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-01.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-01-thumb.webp",
-      "updatedAt": "2026-11-08",
+      "id": "jp-flat-x-01",
       "code": "Flat X-01",
-      "areaM2": 44,
-      "bedrooms": 1,
-      "bathrooms": 1,
+      "areaM2": 135,
+      "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-01-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-01.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-01-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-01-location.webp",
       "rooms": [],
       "apartments": [
-        {
-          "id": "201",
-          "label": "201"
-        },
         {
           "id": "301",
           "label": "301"
@@ -323,27 +317,46 @@
         {
           "id": "801",
           "label": "801"
+        },
+        {
+          "id": "901",
+          "label": "901"
+        },
+        {
+          "id": "1001",
+          "label": "1001"
+        },
+        {
+          "id": "1101",
+          "label": "1101"
+        },
+        {
+          "id": "1201",
+          "label": "1201"
+        },
+        {
+          "id": "1301",
+          "label": "1301"
         }
       ],
       "features": {
         "terrace": false,
         "study": false,
-        "walkInCloset": false
+        "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 1."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 2. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-x-02",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-02.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-02-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat X-02",
-      "areaM2": 59,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "Flat",
+      "id": "jp-duplex-x-02",
+      "code": "Dúplex X-02",
+      "areaM2": 133,
+      "bedrooms": 3,
+      "format": "Duplex",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-02-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -351,133 +364,198 @@
           "label": "402"
         },
         {
-          "id": "502",
-          "label": "502"
-        },
-        {
           "id": "602",
           "label": "602"
         },
         {
-          "id": "702",
-          "label": "702"
-        },
-        {
           "id": "802",
           "label": "802"
+        },
+        {
+          "id": "1002",
+          "label": "1002"
+        },
+        {
+          "id": "1202",
+          "label": "1202"
         }
       ],
       "features": {
         "terrace": false,
         "study": false,
-        "walkInCloset": false
+        "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 2."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 3. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-x-03",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-03.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-03-thumb.webp",
-      "updatedAt": "2026-11-08",
+      "id": "jp-flat-x-03",
       "code": "Flat X-03",
-      "areaM2": 57,
-      "bedrooms": 2,
-      "bathrooms": 2,
+      "areaM2": 131,
+      "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-03-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-03.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-03-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-03-location.webp",
       "rooms": [],
       "apartments": [
+        {
+          "id": "203",
+          "label": "203"
+        },
+        {
+          "id": "302",
+          "label": "302"
+        },
         {
           "id": "403",
           "label": "403"
         },
         {
-          "id": "503",
-          "label": "503"
+          "id": "502",
+          "label": "502"
         },
         {
           "id": "603",
           "label": "603"
         },
         {
-          "id": "703",
-          "label": "703"
+          "id": "702",
+          "label": "702"
         },
         {
           "id": "803",
           "label": "803"
         },
         {
-          "id": "903",
-          "label": "903"
+          "id": "902",
+          "label": "902"
         },
         {
           "id": "1003",
           "label": "1003"
+        },
+        {
+          "id": "1102",
+          "label": "1102"
+        },
+        {
+          "id": "1203",
+          "label": "1203"
+        },
+        {
+          "id": "1302",
+          "label": "1302"
+        },
+        {
+          "id": "1403",
+          "label": "1403"
+        },
+        {
+          "id": "1502",
+          "label": "1502"
         }
       ],
       "features": {
         "terrace": false,
-        "study": true,
-        "walkInCloset": false
+        "study": false,
+        "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 3."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 4. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-x-04",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-04.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-04-thumb.webp",
-      "updatedAt": "2026-11-08",
+      "id": "jp-flat-x-04",
       "code": "Flat X-04",
-      "areaM2": 41,
-      "bedrooms": 1,
-      "bathrooms": 1,
+      "areaM2": 110,
+      "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-04-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-04.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-04-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-04-location.webp",
       "rooms": [],
       "apartments": [
+        {
+          "id": "204",
+          "label": "204"
+        },
+        {
+          "id": "303",
+          "label": "303"
+        },
         {
           "id": "404",
           "label": "404"
         },
         {
-          "id": "504",
-          "label": "504"
+          "id": "503",
+          "label": "503"
         },
         {
           "id": "604",
           "label": "604"
         },
         {
-          "id": "704",
-          "label": "704"
+          "id": "703",
+          "label": "703"
         },
         {
           "id": "804",
           "label": "804"
+        },
+        {
+          "id": "903",
+          "label": "903"
+        },
+        {
+          "id": "1004",
+          "label": "1004"
+        },
+        {
+          "id": "1103",
+          "label": "1103"
+        },
+        {
+          "id": "1204",
+          "label": "1204"
+        },
+        {
+          "id": "1303",
+          "label": "1303"
+        },
+        {
+          "id": "1404",
+          "label": "1404"
+        },
+        {
+          "id": "1503",
+          "label": "1503"
+        },
+        {
+          "id": "1604",
+          "label": "1604"
         }
       ],
       "features": {
         "terrace": false,
         "study": false,
-        "walkInCloset": false
+        "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 4."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 5. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-x-05",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-05.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-05-thumb.webp",
-      "updatedAt": "2026-11-08",
+      "id": "jp-flat-x-05",
       "code": "Flat X-05",
-      "areaM2": 42,
-      "bedrooms": 1,
-      "bathrooms": 1,
+      "areaM2": 80,
+      "bedrooms": 2,
       "format": "Flat",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-05-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-05.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-05-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-05-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -485,403 +563,76 @@
           "label": "205"
         },
         {
-          "id": "305",
-          "label": "305"
+          "id": "304",
+          "label": "304"
         },
         {
           "id": "405",
           "label": "405"
         },
         {
-          "id": "505",
-          "label": "505"
+          "id": "504",
+          "label": "504"
         },
         {
           "id": "605",
           "label": "605"
         },
         {
-          "id": "705",
-          "label": "705"
+          "id": "704",
+          "label": "704"
         },
         {
           "id": "805",
           "label": "805"
+        },
+        {
+          "id": "904",
+          "label": "904"
+        },
+        {
+          "id": "1005",
+          "label": "1005"
+        },
+        {
+          "id": "1104",
+          "label": "1104"
+        },
+        {
+          "id": "1205",
+          "label": "1205"
+        },
+        {
+          "id": "1304",
+          "label": "1304"
+        },
+        {
+          "id": "1405",
+          "label": "1405"
+        },
+        {
+          "id": "1504",
+          "label": "1504"
         }
       ],
       "features": {
         "terrace": false,
         "study": false,
-        "walkInCloset": false
+        "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 5."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 6. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-x-06",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-06.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-06-thumb.webp",
-      "updatedAt": "2026-11-08",
+      "id": "jp-flat-x-06",
       "code": "Flat X-06",
-      "areaM2": 41,
-      "bedrooms": 1,
-      "bathrooms": 1,
+      "areaM2": 181,
+      "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-06-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "206",
-          "label": "206"
-        },
-        {
-          "id": "306",
-          "label": "306"
-        },
-        {
-          "id": "406",
-          "label": "406"
-        },
-        {
-          "id": "506",
-          "label": "506"
-        },
-        {
-          "id": "606",
-          "label": "606"
-        },
-        {
-          "id": "706",
-          "label": "706"
-        },
-        {
-          "id": "806",
-          "label": "806"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 6."
-    },
-    {
-      "id": "flat-x-07",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-07.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-07-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat X-07",
-      "areaM2": 41,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-07-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "105",
-          "label": "105"
-        },
-        {
-          "id": "207",
-          "label": "207"
-        },
-        {
-          "id": "307",
-          "label": "307"
-        },
-        {
-          "id": "407",
-          "label": "407"
-        },
-        {
-          "id": "507",
-          "label": "507"
-        },
-        {
-          "id": "607",
-          "label": "607"
-        },
-        {
-          "id": "707",
-          "label": "707"
-        },
-        {
-          "id": "807",
-          "label": "807"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 7."
-    },
-    {
-      "id": "flat-x-08",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-08.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-08-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat X-08",
-      "areaM2": 60,
-      "bedrooms": 1,
-      "bathrooms": 2,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-08-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "106",
-          "label": "106"
-        },
-        {
-          "id": "208",
-          "label": "208"
-        },
-        {
-          "id": "308",
-          "label": "308"
-        },
-        {
-          "id": "408",
-          "label": "408"
-        },
-        {
-          "id": "508",
-          "label": "508"
-        },
-        {
-          "id": "608",
-          "label": "608"
-        },
-        {
-          "id": "708",
-          "label": "708"
-        },
-        {
-          "id": "808",
-          "label": "808"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": true,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 8."
-    },
-    {
-      "id": "flat-x-09",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-09.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-09-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat X-09",
-      "areaM2": 42,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-09-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "107",
-          "label": "107"
-        },
-        {
-          "id": "209",
-          "label": "209"
-        },
-        {
-          "id": "309",
-          "label": "309"
-        },
-        {
-          "id": "409",
-          "label": "409"
-        },
-        {
-          "id": "509",
-          "label": "509"
-        },
-        {
-          "id": "609",
-          "label": "609"
-        },
-        {
-          "id": "709",
-          "label": "709"
-        },
-        {
-          "id": "809",
-          "label": "809"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 9."
-    },
-    {
-      "id": "flat-x-10",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-10.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-10-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat X-10",
-      "areaM2": 42,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-10-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "108",
-          "label": "108"
-        },
-        {
-          "id": "210",
-          "label": "210"
-        },
-        {
-          "id": "310",
-          "label": "310"
-        },
-        {
-          "id": "410",
-          "label": "410"
-        },
-        {
-          "id": "510",
-          "label": "510"
-        },
-        {
-          "id": "610",
-          "label": "610"
-        },
-        {
-          "id": "710",
-          "label": "710"
-        },
-        {
-          "id": "810",
-          "label": "810"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 10."
-    },
-    {
-      "id": "flat-x-11",
-      "planSrc": "content/plans/bustamante-2026-11/flat-x-11.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-x-11-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat X-11",
-      "areaM2": 47,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-x-11-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "109",
-          "label": "109"
-        },
-        {
-          "id": "211",
-          "label": "211"
-        },
-        {
-          "id": "311",
-          "label": "311"
-        },
-        {
-          "id": "411",
-          "label": "411"
-        },
-        {
-          "id": "511",
-          "label": "511"
-        },
-        {
-          "id": "611",
-          "label": "611"
-        },
-        {
-          "id": "711",
-          "label": "711"
-        },
-        {
-          "id": "811",
-          "label": "811"
-        },
-        {
-          "id": "911",
-          "label": "911"
-        },
-        {
-          "id": "1011",
-          "label": "1011"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 11."
-    },
-    {
-      "id": "flat-101",
-      "planSrc": "content/plans/bustamante-2026-11/flat-101.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-101-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 101",
-      "areaM2": 58,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-101-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "101",
-          "label": "101"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 12."
-    },
-    {
-      "id": "flat-102",
-      "planSrc": "content/plans/bustamante-2026-11/flat-102.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-102-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 102",
-      "areaM2": 56,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-102-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-06.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-06-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-06-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -890,659 +641,212 @@
         }
       ],
       "features": {
+        "terrace": true,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 7. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-07",
+      "code": "Flat X-07",
+      "areaM2": 134,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-07.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-07-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-07-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1401",
+          "label": "1401"
+        }
+      ],
+      "features": {
         "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 8. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-x-08",
+      "code": "Flat X-08",
+      "areaM2": 132,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-08.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-08-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-08-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1501",
+          "label": "1501"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 9. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-duplex-x-09",
+      "code": "Dúplex X-09",
+      "areaM2": 264,
+      "bedrooms": 3,
+      "format": "Duplex",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "1601",
+          "label": "1601"
+        }
+      ],
+      "features": {
+        "terrace": true,
         "study": true,
-        "walkInCloset": false
+        "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 13."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 10. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-103",
-      "planSrc": "content/plans/bustamante-2026-11/flat-103.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-103-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 103",
-      "areaM2": 40,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-103-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "103",
-          "label": "103"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 14."
-    },
-    {
-      "id": "flat-104",
-      "planSrc": "content/plans/bustamante-2026-11/flat-104.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-104-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 104",
-      "areaM2": 42,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-104-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "104",
-          "label": "104"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 15."
-    },
-    {
-      "id": "flat-202",
-      "planSrc": "content/plans/bustamante-2026-11/flat-202.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-202-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 202 y 302",
-      "areaM2": 62,
+      "id": "jp-duplex-x-10",
+      "code": "Dúplex X-10",
+      "areaM2": 170,
       "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "Flat",
+      "format": "Duplex",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-202-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10-location.webp",
       "rooms": [],
       "apartments": [
         {
-          "id": "202",
-          "label": "202"
-        },
-        {
-          "id": "302",
-          "label": "302"
+          "id": "1602",
+          "label": "1602"
         }
       ],
       "features": {
-        "terrace": false,
+        "terrace": true,
         "study": false,
         "walkInCloset": false
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 16."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 11. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-203",
-      "planSrc": "content/plans/bustamante-2026-11/flat-203.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-203-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 203 y 303",
-      "areaM2": 61,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "Flat",
+      "id": "jp-duplex-x-11",
+      "code": "Dúplex X-11",
+      "areaM2": 218,
+      "bedrooms": 3,
+      "format": "Duplex",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-203-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11-location.webp",
       "rooms": [],
       "apartments": [
         {
-          "id": "203",
-          "label": "203"
-        },
-        {
-          "id": "303",
-          "label": "303"
+          "id": "1603",
+          "label": "1603"
         }
       ],
       "features": {
-        "terrace": false,
+        "terrace": true,
         "study": true,
-        "walkInCloset": false
+        "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 17."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 12. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-204",
-      "planSrc": "content/plans/bustamante-2026-11/flat-204.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-204-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 204 y 304",
-      "areaM2": 43,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-204-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "204",
-          "label": "204"
-        },
-        {
-          "id": "304",
-          "label": "304"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 18."
-    },
-    {
-      "id": "flat-901",
-      "planSrc": "content/plans/bustamante-2026-11/flat-901.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-901-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 901 y 1001",
-      "areaM2": 42,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-901-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "901",
-          "label": "901"
-        },
-        {
-          "id": "1001",
-          "label": "1001"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 19."
-    },
-    {
-      "id": "flat-902",
-      "planSrc": "content/plans/bustamante-2026-11/flat-902.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-902-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 902 y 1002",
-      "areaM2": 58,
+      "id": "jp-duplex-x-12",
+      "code": "Dúplex X-12",
+      "areaM2": 157,
       "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "Flat",
+      "format": "Duplex",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-902-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12-location.webp",
       "rooms": [],
       "apartments": [
         {
-          "id": "902",
-          "label": "902"
-        },
-        {
-          "id": "1002",
-          "label": "1002"
+          "id": "1605",
+          "label": "1605"
         }
       ],
       "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 20."
-    },
-    {
-      "id": "flat-904",
-      "planSrc": "content/plans/bustamante-2026-11/flat-904.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-904-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 904 y 1004",
-      "areaM2": 40,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-904-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "904",
-          "label": "904"
-        },
-        {
-          "id": "1004",
-          "label": "1004"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 21."
-    },
-    {
-      "id": "flat-905",
-      "planSrc": "content/plans/bustamante-2026-11/flat-905.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-905-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 905 y 1005",
-      "areaM2": 40,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-905-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "905",
-          "label": "905"
-        },
-        {
-          "id": "1005",
-          "label": "1005"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 22."
-    },
-    {
-      "id": "flat-906",
-      "planSrc": "content/plans/bustamante-2026-11/flat-906.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-906-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 906",
-      "areaM2": 41,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-906-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "906",
-          "label": "906"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 23."
-    },
-    {
-      "id": "flat-907",
-      "planSrc": "content/plans/bustamante-2026-11/flat-907.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-907-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 907",
-      "areaM2": 43,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-907-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "907",
-          "label": "907"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 24."
-    },
-    {
-      "id": "flat-908",
-      "planSrc": "content/plans/bustamante-2026-11/flat-908.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-908-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 908",
-      "areaM2": 59,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-908-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "908",
-          "label": "908"
-        }
-      ],
-      "features": {
-        "terrace": false,
+        "terrace": true,
         "study": true,
-        "walkInCloset": false
+        "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 25."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 13. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "flat-909",
-      "planSrc": "content/plans/bustamante-2026-11/flat-909.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-909-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 909",
-      "areaM2": 43,
-      "bedrooms": 1,
-      "bathrooms": 1,
+      "id": "jp-flat-x-13",
+      "code": "Flat X-13",
+      "areaM2": 165,
+      "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-909-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-13.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-13-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-13-location.webp",
       "rooms": [],
       "apartments": [
         {
-          "id": "909",
-          "label": "909"
+          "id": "101",
+          "label": "101"
         }
       ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 26."
-    },
-    {
-      "id": "flat-910",
-      "planSrc": "content/plans/bustamante-2026-11/flat-910.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-910-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 910",
-      "areaM2": 43,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-910-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "910",
-          "label": "910"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 27."
-    },
-    {
-      "id": "flat-1006",
-      "planSrc": "content/plans/bustamante-2026-11/flat-1006.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-1006-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 1006",
-      "areaM2": 40,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-1006-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "1006",
-          "label": "1006"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 28."
-    },
-    {
-      "id": "flat-1007",
-      "planSrc": "content/plans/bustamante-2026-11/flat-1007.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-1007-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 1007",
-      "areaM2": 40,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-1007-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "1007",
-          "label": "1007"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 29."
-    },
-    {
-      "id": "flat-1008",
-      "planSrc": "content/plans/bustamante-2026-11/flat-1008.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-1008-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 1008",
-      "areaM2": 55,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-1008-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "1008",
-          "label": "1008"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": true,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 30."
-    },
-    {
-      "id": "flat-1009",
-      "planSrc": "content/plans/bustamante-2026-11/flat-1009.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-1009-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 1009",
-      "areaM2": 40,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-1009-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "1009",
-          "label": "1009"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 31."
-    },
-    {
-      "id": "flat-1010",
-      "planSrc": "content/plans/bustamante-2026-11/flat-1010.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/flat-1010-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "Flat 1010",
-      "areaM2": 40,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "Flat",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/flat-1010-location.webp",
-      "rooms": [],
-      "apartments": [
-        {
-          "id": "1010",
-          "label": "1010"
-        }
-      ],
-      "features": {
-        "terrace": false,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 32."
-    },
-    {
-      "id": "th-ss-01",
-      "planSrc": "content/plans/bustamante-2026-11/th-ss-01.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/th-ss-01-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "TH SS-01",
-      "areaM2": 77,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "TH",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/th-ss-01-location.webp",
-      "rooms": [],
-      "apartments": [],
-      "features": {
-        "terrace": true,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 33."
-    },
-    {
-      "id": "th-ss-02",
-      "planSrc": "content/plans/bustamante-2026-11/th-ss-02.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/th-ss-02-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "TH SS-02",
-      "areaM2": 76,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "TH",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/th-ss-02-location.webp",
-      "rooms": [],
-      "apartments": [],
-      "features": {
-        "terrace": true,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 34."
-    },
-    {
-      "id": "th-ss-03",
-      "planSrc": "content/plans/bustamante-2026-11/th-ss-03.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/th-ss-03-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "TH SS-03",
-      "areaM2": 50,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "TH",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/th-ss-03-location.webp",
-      "rooms": [],
-      "apartments": [],
-      "features": {
-        "terrace": true,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 35."
-    },
-    {
-      "id": "th-ss-04",
-      "planSrc": "content/plans/bustamante-2026-11/th-ss-04.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/th-ss-04-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "TH SS-04",
-      "areaM2": 74,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "TH",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/th-ss-04-location.webp",
-      "rooms": [],
-      "apartments": [],
-      "features": {
-        "terrace": true,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 36."
-    },
-    {
-      "id": "th-ss-05",
-      "planSrc": "content/plans/bustamante-2026-11/th-ss-05.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/th-ss-05-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "TH SS-05",
-      "areaM2": 78,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "format": "TH",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/th-ss-05-location.webp",
-      "rooms": [],
-      "apartments": [],
-      "features": {
-        "terrace": true,
-        "study": false,
-        "walkInCloset": false
-      },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 37."
-    },
-    {
-      "id": "th-ss-06",
-      "planSrc": "content/plans/bustamante-2026-11/th-ss-06.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/th-ss-06-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "code": "TH SS-06",
-      "areaM2": 57,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "format": "TH",
-      "active": true,
-      "floorThumbnailSrc": "content/plans/bustamante-2026-11/th-ss-06-location.webp",
-      "rooms": [],
-      "apartments": [],
       "features": {
         "terrace": true,
         "study": false,
         "walkInCloset": true
       },
-      "notes": "Fuente: PLANOS-BUSTAMANTE.pdf, página 38."
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 14. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-duplex-x-14",
+      "code": "Dúplex X-14",
+      "areaM2": 112,
+      "bedrooms": 3,
+      "format": "Duplex",
+      "active": true,
+      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "202",
+          "label": "202"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-08",
+      "notes": "Fuente: PLANOS-JP.pdf, página 15. Áreas y dimensiones referenciales según ficha."
     }
   ],
   "pointsOfInterest": [
@@ -1881,9 +1185,15 @@
     }
   ],
   "version": {
-    "version": "1.0",
+    "version": "1.1",
+    "previousVersion": "1.0",
     "publishedAt": "2026-11-08",
     "changes": [
+      {
+        "id": "jp2168-planos-2026-11-08",
+        "date": "2026-11-08",
+        "text": "Se reemplazó el catálogo heredado por 14 tipologías y 7 planos generales de PLANOS-JP.pdf."
+      },
       {
         "id": "jp2168-independent",
         "date": "2026-11-08",
@@ -2061,42 +1371,56 @@
       }
     ]
   },
-  "plansRevision": "bustamante-planos-2026-11-08",
+  "plansRevision": "jp2168-planos-2026-11-08",
   "generalPlans": [
     {
-      "id": "semisotano",
-      "planSrc": "content/plans/bustamante-2026-11/semisotano.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/semisotano-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "title": "Semisótano"
+      "id": "jp-planta-tipica",
+      "title": "Planta típica · Pisos 4 al 13",
+      "planSrc": "content/plans/jp2168-2026-11/planta-tipica.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/planta-tipica-thumb.webp",
+      "updatedAt": "2026-11-08"
     },
     {
-      "id": "sotano-01",
-      "planSrc": "content/plans/bustamante-2026-11/sotano-01.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/sotano-01-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "title": "Sótano 01"
+      "id": "jp-sotano-01",
+      "title": "Sótano 01",
+      "planSrc": "content/plans/jp2168-2026-11/sotano-01.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-01-thumb.webp",
+      "updatedAt": "2026-11-08"
     },
     {
-      "id": "sotano-02",
-      "planSrc": "content/plans/bustamante-2026-11/sotano-02.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/sotano-02-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "title": "Sótano 02"
+      "id": "jp-sotano-02",
+      "title": "Sótano 02",
+      "planSrc": "content/plans/jp2168-2026-11/sotano-02.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-02-thumb.webp",
+      "updatedAt": "2026-11-08"
     },
     {
-      "id": "sotano-03",
-      "planSrc": "content/plans/bustamante-2026-11/sotano-03.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/sotano-03-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "title": "Sótano 03"
+      "id": "jp-sotano-03",
+      "title": "Sótano 03",
+      "planSrc": "content/plans/jp2168-2026-11/sotano-03.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-03-thumb.webp",
+      "updatedAt": "2026-11-08"
     },
     {
-      "id": "azotea",
-      "planSrc": "content/plans/bustamante-2026-11/azotea.webp",
-      "thumbnailSrc": "content/plans/bustamante-2026-11/azotea-thumb.webp",
-      "updatedAt": "2026-11-08",
-      "title": "Azotea"
+      "id": "jp-sotano-04",
+      "title": "Sótano 04",
+      "planSrc": "content/plans/jp2168-2026-11/sotano-04.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-04-thumb.webp",
+      "updatedAt": "2026-11-08"
+    },
+    {
+      "id": "jp-piso-1",
+      "title": "Piso 1",
+      "planSrc": "content/plans/jp2168-2026-11/piso-1.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/piso-1-thumb.webp",
+      "updatedAt": "2026-11-08"
+    },
+    {
+      "id": "jp-azotea",
+      "title": "Azotea",
+      "planSrc": "content/plans/jp2168-2026-11/azotea.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11/azotea-thumb.webp",
+      "updatedAt": "2026-11-08"
     }
   ]
 }
