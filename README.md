@@ -6,10 +6,10 @@ El repositorio de trabajo es `pcovinos1/JP2168`; no se modifica el proyecto orig
 ## Estado del contenido
 
 La identidad técnica está aislada. Los renders, mapa, puntos de interés y textos comerciales siguen pendientes de validación y reemplazo.
-El catálogo de planos ya corresponde a PLANOS-JP.pdf: 14 tipologías y siete planos generales.
+El catálogo de planos corresponde a `planos-finales-jp.pdf` e incluye 14 tipologías y 12 planos generales.
 Las áreas y dimensiones mantienen el carácter referencial indicado en las fichas.
-Los planos se guardan en `public/content/plans/jp2168-2026-11/`.
-Una migración reemplaza solo el catálogo heredado en instalaciones existentes y conserva el resto del contenido local.
+Los planos se guardan en `public/content/plans/jp2168-2026-11-11/`.
+En instalaciones existentes, la migración actualiza las imágenes del catálogo anterior y agrega los cinco pisos nuevos. Conserva las imágenes personalizadas, las zonas y los demás datos locales.
 El distrito y la certificación del contenido inicial están pendientes de confirmación.
 
 ## Desarrollo y publicación

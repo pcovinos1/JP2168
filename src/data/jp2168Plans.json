@@ -7,9 +7,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-01.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-01-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-01-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-01.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-01-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-01-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -62,8 +62,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 2. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 2. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-02",
@@ -72,9 +72,9 @@
       "bedrooms": 3,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-02-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-02.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-02-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-02-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -103,8 +103,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 3. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 3. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-03",
@@ -113,9 +113,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-03.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-03-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-03-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-03.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-03-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-03-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -180,8 +180,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 4. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 4. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-04",
@@ -190,9 +190,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-04.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-04-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-04-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-04.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-04-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-04-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -261,8 +261,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 5. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 5. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-05",
@@ -271,9 +271,9 @@
       "bedrooms": 2,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-05.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-05-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-05-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-05.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-05-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-05-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -338,8 +338,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 6. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 6. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-06",
@@ -348,9 +348,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-06.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-06-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-06-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-06.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-06-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-06-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -363,8 +363,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 7. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 7. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-07",
@@ -373,9 +373,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-07.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-07-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-07-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-07.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-07-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-07-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -388,8 +388,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 8. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 8. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-08",
@@ -398,9 +398,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-08.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-08-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-08-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-08.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-08-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-08-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -413,8 +413,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 9. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 9. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-09",
@@ -423,9 +423,9 @@
       "bedrooms": 3,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-09-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-09.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-09-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-09-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -438,8 +438,8 @@
         "study": true,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 10. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 10. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-10",
@@ -448,9 +448,9 @@
       "bedrooms": 2,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-10-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-10.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-10-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-10-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -463,8 +463,8 @@
         "study": false,
         "walkInCloset": false
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 11. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 11. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-11",
@@ -473,9 +473,9 @@
       "bedrooms": 3,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-11-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-11.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-11-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-11-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -488,8 +488,8 @@
         "study": true,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 12. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 12. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-12",
@@ -498,9 +498,9 @@
       "bedrooms": 2,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-12-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-12.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-12-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-12-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -513,8 +513,8 @@
         "study": true,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 13. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 13. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-13",
@@ -523,9 +523,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-flat-x-13.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-13-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-flat-x-13-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-13.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-13-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-13-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -538,8 +538,8 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 14. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 14. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-14",
@@ -548,9 +548,9 @@
       "bedrooms": 3,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11/jp-duplex-x-14-location.webp",
+      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-14.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-14-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-14-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -563,69 +563,104 @@
         "study": false,
         "walkInCloset": true
       },
-      "updatedAt": "2026-11-08",
-      "notes": "Fuente: PLANOS-JP.pdf, página 15. Áreas y dimensiones referenciales según ficha."
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: planos-finales-jp.pdf, página 15. Áreas y dimensiones referenciales según ficha."
     }
   ],
   "generalPlans": [
     {
       "id": "jp-planta-tipica",
       "title": "Planta típica · Pisos 4 al 13",
-      "planSrc": "content/plans/jp2168-2026-11/planta-tipica.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/planta-tipica-thumb.webp",
-      "updatedAt": "2026-11-08"
+      "planSrc": "content/plans/jp2168-2026-11-11/planta-tipica.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/planta-tipica-thumb.webp",
+      "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-sotano-01",
       "title": "Sótano 01",
-      "planSrc": "content/plans/jp2168-2026-11/sotano-01.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-01-thumb.webp",
-      "updatedAt": "2026-11-08"
+      "planSrc": "content/plans/jp2168-2026-11-11/sotano-01.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/sotano-01-thumb.webp",
+      "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-sotano-02",
       "title": "Sótano 02",
-      "planSrc": "content/plans/jp2168-2026-11/sotano-02.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-02-thumb.webp",
-      "updatedAt": "2026-11-08"
+      "planSrc": "content/plans/jp2168-2026-11-11/sotano-02.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/sotano-02-thumb.webp",
+      "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-sotano-03",
       "title": "Sótano 03",
-      "planSrc": "content/plans/jp2168-2026-11/sotano-03.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-03-thumb.webp",
-      "updatedAt": "2026-11-08"
+      "planSrc": "content/plans/jp2168-2026-11-11/sotano-03.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/sotano-03-thumb.webp",
+      "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-sotano-04",
       "title": "Sótano 04",
-      "planSrc": "content/plans/jp2168-2026-11/sotano-04.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/sotano-04-thumb.webp",
-      "updatedAt": "2026-11-08"
+      "planSrc": "content/plans/jp2168-2026-11-11/sotano-04.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/sotano-04-thumb.webp",
+      "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-piso-1",
       "title": "Piso 1",
-      "planSrc": "content/plans/jp2168-2026-11/piso-1.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/piso-1-thumb.webp",
-      "updatedAt": "2026-11-08"
+      "planSrc": "content/plans/jp2168-2026-11-11/piso-1.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-1-thumb.webp",
+      "updatedAt": "2026-11-11"
+    },
+    {
+      "id": "jp-piso-2",
+      "title": "Piso 2",
+      "planSrc": "content/plans/jp2168-2026-11-11/piso-2.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-2-thumb.webp",
+      "updatedAt": "2026-11-11"
+    },
+    {
+      "id": "jp-piso-3",
+      "title": "Piso 3",
+      "planSrc": "content/plans/jp2168-2026-11-11/piso-3.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-3-thumb.webp",
+      "updatedAt": "2026-11-11"
+    },
+    {
+      "id": "jp-piso-14",
+      "title": "Piso 14",
+      "planSrc": "content/plans/jp2168-2026-11-11/piso-14.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-14-thumb.webp",
+      "updatedAt": "2026-11-11"
+    },
+    {
+      "id": "jp-piso-15",
+      "title": "Piso 15",
+      "planSrc": "content/plans/jp2168-2026-11-11/piso-15.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-15-thumb.webp",
+      "updatedAt": "2026-11-11"
+    },
+    {
+      "id": "jp-piso-16",
+      "title": "Piso 16",
+      "planSrc": "content/plans/jp2168-2026-11-11/piso-16.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-16-thumb.webp",
+      "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-azotea",
       "title": "Azotea",
-      "planSrc": "content/plans/jp2168-2026-11/azotea.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11/azotea-thumb.webp",
-      "updatedAt": "2026-11-08"
+      "planSrc": "content/plans/jp2168-2026-11-11/azotea.webp",
+      "thumbnailSrc": "content/plans/jp2168-2026-11-11/azotea-thumb.webp",
+      "updatedAt": "2026-11-11"
     }
   ],
   "floorPlan": {
     "id": "jp-planta-tipica",
     "title": "Planta típica · Pisos 4 al 13",
-    "imageSrc": "content/plans/jp2168-2026-11/planta-tipica.webp",
+    "imageSrc": "content/plans/jp2168-2026-11-11/planta-tipica.webp",
     "hotspots": [],
-    "updatedAt": "2026-11-08"
+    "updatedAt": "2026-11-11"
   },
   "areaRange": "Desde 80 m² hasta 264 m²",
   "typologySummary": "14 tipologías de 2 y 3 dormitorios: flats y dúplex.",
-  "plansRevision": "jp2168-planos-2026-11-08"
+  "plansRevision": "jp2168-planos-2026-11-11"
 }
