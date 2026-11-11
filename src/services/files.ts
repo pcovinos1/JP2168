@@ -1,3 +1,4 @@
+import { migrateNeighborhood } from "../data/neighborhood";
 import { PROJECT_ID, PROJECT_ARCHIVE, PROJECT_NAME, assertProjectIdentity } from "../data/projectIdentity";
 import JSZip from "jszip";
 import type { Project } from "../types/project";
@@ -219,7 +220,7 @@ export async function fetchRemoteProject(current?: Project): Promise<Project | n
     throw new Error("El contenido publicado en GitHub no tiene un formato válido.");
   }
   if (current && compareProjectVersions(parsed, current) <= 0) return null;
-  return migratePlans(parsed);
+  return migrateNeighborhood(migratePlans(parsed));
 }
 
 function compareVersionStrings(a: string, b: string): number {

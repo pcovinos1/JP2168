@@ -1,3 +1,4 @@
+import { migrateNeighborhood } from "../data/neighborhood";
 import { PROJECT_ID, assertProjectIdentity } from "../data/projectIdentity";
 import { openDB } from "idb";
 import type { Project } from "../types/project";
@@ -17,16 +18,16 @@ const dbPromise = openDB(DB_NAME, 1, {
 
 export async function getProject(): Promise<Project> {
   const db = await safeDb();
-  if (!db) return fetchRemoteProject().catch(() => null).then((project) => migratePlans(project ?? initialProject));
+  if (!db) return fetchRemoteProject().catch(() => null).then((project) => migrateNeighborhood(migratePlans(project ?? initialProject)));
 
   const saved = await db.get(STORE, PROJECT_KEY).catch(() => undefined);
   if (saved && saved.id === PROJECT_ID) {
-    const normalized = migratePlans(normalizeProject(saved as Project));
+    const normalized = migrateNeighborhood(migratePlans(normalizeProject(saved as Project)));
     await db.put(STORE, normalized, PROJECT_KEY).catch(() => undefined);
     return normalized;
   }
   const published = await fetchRemoteProject().catch(() => null);
-  const project = migratePlans(published ?? initialProject);
+  const project = migrateNeighborhood(migratePlans(published ?? initialProject));
   await db.put(STORE, project, PROJECT_KEY).catch(() => undefined);
   return project;
 }
@@ -40,7 +41,7 @@ export async function saveProject(project: Project): Promise<void> {
 
 export async function resetProject(): Promise<Project> {
   const db = await safeDb();
-  const project = migratePlans(initialProject);
+  const project = migrateNeighborhood(migratePlans(initialProject));
   await db?.put(STORE, project, PROJECT_KEY).catch(() => undefined);
   return project;
 }

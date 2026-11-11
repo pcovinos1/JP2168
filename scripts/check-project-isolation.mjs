@@ -31,7 +31,10 @@ vm.runInNewContext(worker, {
     delete: async key => { deleted.push(key); },
     open: async key => {
       assert.equal(key, `javier-prado-oeste-2168-${cacheName}`);
-      return { match: async () => cachedResponse };
+      return { match: async (_request, options) => {
+        assert.equal(options?.ignoreVary, true);
+        return cachedResponse;
+      } };
     }
   }
 });
@@ -48,5 +51,8 @@ for (const path of ['index.html', 'assets/example.js', 'content/project.json']) 
 listeners.fetch({ request: { method: 'GET', url: 'https://example.test/Bustamante175/index.html' }, respondWith: () => assert.fail('Must ignore another project') });
 const manifest = JSON.parse(fs.readFileSync('dist/offline-cache-manifest.json'));
 for (const file of manifest.files.filter(file => file !== './')) assert.ok(fs.existsSync(`dist/${file}`), file);
+for (const asset of ['arquitectura', 'cultura', 'espacios', 'gastronomia', 'mapa']) {
+  assert.ok(manifest.files.includes(`content/location/${asset}.webp`));
+}
 assert.ok(fs.readFileSync('dist/index.html', 'utf8').includes('/JP2168/assets/'));
 console.log('Project identity, cache isolation, offline fallback and Pages paths passed.');

@@ -1,3 +1,4 @@
+import { Neighborhood } from "./components/Neighborhood";
 import { ArrowRight, ArrowUp, ArrowDown, Building2, Check, ChevronLeft, ChevronRight, Download, FileUp, Grid3X3, Lock, Plus, RotateCcw, Save, Search, Trash2, Upload } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -27,11 +28,9 @@ export default function App() {
   const [view, setView] = useState<ViewKey>("home");
   const [selectedTypologyId, setSelectedTypologyId] = useState("jp-flat-x-01");
   const [gallery, setGallery] = useState<{ images: GalleryImage[]; index: number } | null>(null);
-  const [poiFilter, setPoiFilter] = useState("Todos");
 
   const project = storedProject && view !== "admin" ? { ...storedProject, galleries: storedProject.galleries.map(g => ({ ...g, images: g.images.filter(i => !i.hidden) })) } : storedProject;
   const navigate = (next: ViewKey) => {
-    if (next === "location") setPoiFilter("Todos");
     setView(next);
   };
 
@@ -40,7 +39,7 @@ export default function App() {
   }
 
   return (
-    <main className="min-h-screen bg-paper pb-28 text-ink">
+    <main className={`min-h-screen bg-paper text-ink ${view === "location" ? "" : "pb-28"}`}>
       {view !== "admin" && <GlobalNav current={view} onNavigate={navigate} />}
       {view === "home" && <Home project={project} onNavigate={navigate} />}
       {view === "menu" && <MenuPage onNavigate={navigate} />}
@@ -49,7 +48,7 @@ export default function App() {
       {view === "architecture" && <ArchitecturePage project={project} onOpenGallery={setGallery} />}
       {view === "amenities" && <AmenitiesPage project={project} onOpenGallery={setGallery} />}
       {view === "interiors" && <InteriorsPage project={project} onOpenGallery={setGallery} />}
-      {view === "location" && <LocationPage project={project} filter={poiFilter} setFilter={setPoiFilter} onOpenGallery={setGallery} />}
+      {view === "location" && <Neighborhood project={project} />}
       {view === "departments" && <DepartmentsPage project={project} selectedTypologyId={selectedTypologyId} setSelectedTypologyId={setSelectedTypologyId} onNavigate={navigate} />}
       {view === "floor" && (
         <FloorPage
@@ -329,104 +328,6 @@ function InteriorsPage({ project, onOpenGallery }: { project: Project; onOpenGal
   const section = getSection(project, "interiors");
   return (
     <HorizontalGalleryStory eyebrow={section.title} title={gallery?.title ?? section.title} text={section.summary} gallery={gallery} labels={gallery?.images.map((image) => image.title) ?? ["Sala", "Comedor", "Cocina", "Dormitorio principal", "Dormitorio secundario", "Baño", "Detalles de materiales"]} onOpenGallery={onOpenGallery} />
-  );
-}
-
-function LocationPage({ project, filter, setFilter, onOpenGallery }: { project: Project; filter: string; setFilter: (value: string) => void; onOpenGallery: (value: { images: GalleryImage[]; index: number }) => void }) {
-  const [hoveredPoiId, setHoveredPoiId] = useState<string | null>(null);
-  const [selectedPoiId, setSelectedPoiId] = useState<string | null>(null);
-  const categories = ["Todos", "Gastronomía", "Parques", "Educación", "Tiendas"];
-  const gallery = project.galleries.find((item) => item.id === "barrio");
-  const visible = project.pointsOfInterest
-    .filter((poi) => poi.visible)
-    .filter((poi) => filter === "Todos" || poi.category === filter)
-    .sort((a, b) => a.order - b.order);
-  const section = getSection(project, "location");
-  const activePoiId = hoveredPoiId ?? selectedPoiId;
-  const activePoi = visible.find((poi) => poi.id === activePoiId);
-  const entorno = project.galleries.find(g => g.id === "entorno");
-  return (
-    <>
-    {entorno?.images.length ? <HorizontalGalleryStory eyebrow="Ubicación" title={entorno.title} text="" gallery={entorno} labels={[]} onOpenGallery={onOpenGallery} /> : null}
-    <section className="editorial-page">
-      <div className="location-scene">
-        <aside className="location-copy">
-          <p className="eyebrow">{section.title}</p>
-          <h1 className="editorial-title">{project.address}</h1>
-          <p className="editorial-lead">{section.summary}</p>
-          <div className="location-filters">
-            {categories.map((category) => (
-              <button key={category} className={`pill ${filter === category ? "pill-active" : ""}`} onClick={() => { setFilter(category); setHoveredPoiId(null); setSelectedPoiId(null); }} type="button">
-                {category}
-              </button>
-            ))}
-          </div>
-        </aside>
-        <div className="location-map" aria-label="Mapa interactivo de puntos de interés">
-          <div className="location-map-frame">
-            <img className="h-full w-full object-contain" src={gallery?.images[0]?.src} alt="Mapa ilustrado offline" />
-            {visible.map((poi) => {
-              const active = activePoiId === poi.id;
-              return (
-                <button
-                  key={poi.id}
-                  className={`location-marker ${active ? "is-active" : ""}`}
-                  style={{ left: `${poi.x}%`, top: `${poi.y}%` }}
-                  onMouseEnter={() => setHoveredPoiId(poi.id)}
-                  onMouseLeave={() => setHoveredPoiId(null)}
-                  onFocus={() => setHoveredPoiId(poi.id)}
-                  onBlur={() => setHoveredPoiId(null)}
-                  onClick={() => setSelectedPoiId((current) => (current === poi.id ? null : poi.id))}
-                  type="button"
-                  aria-label={poi.name}
-                >
-                  <span>{poi.order}</span>
-                  <em>{poi.name}</em>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-        <aside className="location-list">
-          <div className="location-list-head">
-            <div>
-              <p className="eyebrow mb-1">Puntos de interés</p>
-              <span>{visible.length} lugares visibles</span>
-            </div>
-            {activePoi ? <strong>{activePoi.order}</strong> : null}
-          </div>
-          {activePoi ? <p className="location-active-name">{activePoi.name}</p> : null}
-          <div className="location-list-scroll">
-            {visible.map((poi) => {
-              const active = activePoiId === poi.id;
-              return (
-                <button
-                  key={poi.id}
-                  className={active ? "is-active" : ""}
-                  onMouseEnter={() => setHoveredPoiId(poi.id)}
-                  onMouseLeave={() => setHoveredPoiId(null)}
-                  onFocus={() => setHoveredPoiId(poi.id)}
-                  onBlur={() => setHoveredPoiId(null)}
-                  onClick={() => setSelectedPoiId((current) => (current === poi.id ? null : poi.id))}
-                  type="button"
-                >
-                  <span>{poi.order}</span>
-                  <strong>{poi.name}</strong>
-                </button>
-              );
-            })}
-          </div>
-        </aside>
-        {/* <div className="location-filters">
-          {categories.map((category) => (
-            <button key={category} className={`pill ${filter === category ? "pill-active" : ""}`} onClick={() => setFilter(category)} type="button">
-              {category}
-            </button>
-          ))}
-        </div> */}
-      </div>
-    </section>
-    </>
   );
 }
 
@@ -1479,7 +1380,7 @@ function AdminLocation({ project, updateProject }: { project: Project; updatePro
   const [status, setStatus] = useState("");
   const [selectedPoiId, setSelectedPoiId] = useState(project.pointsOfInterest[0]?.id ?? "");
   const mapFrameRef = useRef<HTMLDivElement | null>(null);
-  const categories: Array<Project["pointsOfInterest"][number]["category"]> = ["Gastronomía", "Parques", "Educación", "Tiendas", "Entretenimiento"];
+  const categories: Array<Project["pointsOfInterest"][number]["category"]> = ["Gastronomía", "Parques", "Educación", "Tiendas", "Entretenimiento", "Bancos", "Salud", "Gimnasios"];
   const barrioGallery = project.galleries.find((gallery) => gallery.id === "barrio");
   const mapImage = barrioGallery?.images[0];
   const sortedPois = [...project.pointsOfInterest].sort((a, b) => a.order - b.order);
@@ -1495,7 +1396,7 @@ function AdminLocation({ project, updateProject }: { project: Project; updatePro
       ...current,
       galleries: current.galleries.map((gallery) =>
         gallery.id === "barrio"
-          ? { ...gallery, images: gallery.images.map((image, index) => (index === 0 ? { ...image, src, updatedAt: new Date().toISOString() } : image)) }
+          ? { ...gallery, images: gallery.images.map((image, index) => (index === 0 ? { ...image, title: file.name, src, updatedAt: new Date().toISOString() } : image)) }
           : gallery
       )
     }));
@@ -1536,7 +1437,7 @@ function AdminLocation({ project, updateProject }: { project: Project; updatePro
           {mapImage ? (
             <div className="admin-location-map mb-3">
               <div ref={mapFrameRef} className="location-map-frame" onPointerDown={placeSelectedPoi}>
-                <img className="h-full w-full object-contain" src={mapImage.src} alt={mapImage.title} />
+                <img className="block h-auto w-full" src={mapImage.src} alt={mapImage.title} />
                 {sortedPois.map((poi) => (
                   <button
                     key={poi.id}

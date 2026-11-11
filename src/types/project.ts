@@ -92,7 +92,7 @@ export interface PointOfInterest {
   description?: string;
   id: string;
   name: string;
-  category: "Gastronomía" | "Parques" | "Educación" | "Tiendas" | "Entretenimiento";
+  category: "Gastronomía" | "Parques" | "Educación" | "Tiendas" | "Entretenimiento" | "Bancos" | "Salud" | "Gimnasios";
   x: number;
   y: number;
   visible: boolean;

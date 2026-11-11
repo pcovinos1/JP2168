@@ -2,7 +2,9 @@ const CACHE_PREFIX = "javier-prado-oeste-2168-";
 const CACHE_NAME = `${CACHE_PREFIX}__BUILD_REVISION__`;
 
 async function matchOwnCache(request) {
-  return (await caches.open(CACHE_NAME)).match(request);
+  // Precache requests can omit the Origin header sent by module and stylesheet loads.
+  // Files in this same-origin Pages build are static and do not vary by request headers.
+  return (await caches.open(CACHE_NAME)).match(request, { ignoreVary: true });
 }
 const APP_SHELL = ["./", "index.html", "manifest.webmanifest", "icon.svg", "offline-cache-manifest.json"];
 
