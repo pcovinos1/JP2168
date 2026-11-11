@@ -23,7 +23,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
       const files = await offlineFiles();
-      await cache.addAll(files);
+      await cache.addAll(files.map((file) => new Request(new URL(file, self.registration.scope), { cache: "reload" })));
       await self.skipWaiting();
     })
   );
@@ -47,7 +47,7 @@ self.addEventListener("fetch", (event) => {
 
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: "no-store" })
         .then((response) => {
           if (response.ok) {
             const clone = response.clone();
@@ -62,7 +62,7 @@ self.addEventListener("fetch", (event) => {
 
   if (url.pathname.endsWith("/content/project.json")) {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: "no-store" })
         .then((response) => {
           if (response.ok) {
             const clone = response.clone();
