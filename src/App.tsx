@@ -1,6 +1,6 @@
 import { ArrowRight, ArrowUp, ArrowDown, Building2, Check, ChevronLeft, ChevronRight, Download, FileUp, Grid3X3, Lock, Plus, RotateCcw, Save, Search, Trash2, Upload } from "lucide-react";
 import type { ReactNode } from "react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FullscreenPlan } from "./components/FullscreenPlan";
 import { FloorPlanInteractive } from "./components/FloorPlanInteractive";
 import { GalleryModal } from "./components/GalleryModal";
@@ -23,12 +23,13 @@ const menuItems: Array<{ view: ViewKey; title: string; text: string }> = [
 ];
 
 export default function App() {
-  const { project, loading, updateProject, reload, syncFromRemote } = useProject();
+  const { project: storedProject, loading, updateProject, reload, syncFromRemote } = useProject();
   const [view, setView] = useState<ViewKey>("home");
   const [selectedTypologyId, setSelectedTypologyId] = useState("jp-flat-x-01");
   const [gallery, setGallery] = useState<{ images: GalleryImage[]; index: number } | null>(null);
   const [poiFilter, setPoiFilter] = useState("Todos");
 
+  const project = storedProject && view !== "admin" ? { ...storedProject, galleries: storedProject.galleries.map(g => ({ ...g, images: g.images.filter(i => !i.hidden) })) } : storedProject;
   const navigate = (next: ViewKey) => {
     if (next === "location") setPoiFilter("Todos");
     setView(next);
@@ -40,7 +41,7 @@ export default function App() {
 
   return (
     <main className="min-h-screen bg-paper pb-28 text-ink">
-      <GlobalNav current={view} onNavigate={navigate} />
+      {view !== "admin" && <GlobalNav current={view} onNavigate={navigate} />}
       {view === "home" && <Home project={project} onNavigate={navigate} />}
       {view === "menu" && <MenuPage onNavigate={navigate} />}
       {view === "about" && <AboutUsPage project={project} />}
@@ -59,17 +60,17 @@ export default function App() {
       )}
       {view === "compare" && <ComparePage project={project} />}
       {view === "contact" && <ContactPage project={project} />}
-      {view === "admin" && <AdminPage project={project} updateProject={updateProject} reload={reload} syncFromRemote={syncFromRemote} />}
+      {view === "admin" && <AdminPage project={project} updateProject={updateProject} reload={reload} syncFromRemote={syncFromRemote} onExit={() => navigate("home")} />}
       {gallery ? <GalleryModal images={gallery.images} initialIndex={gallery.index} onClose={() => setGallery(null)} /> : null}
     </main>
   );
 }
 
 function Home({ project, onNavigate }: { project: Project; onNavigate: (view: ViewKey) => void }) {
-  const hero = project.galleries.find((item) => item.id === "fachada")?.images[0]?.src;
+  const hero = project.home?.mediaSrc ?? project.galleries.find((item) => item.id === "fachada")?.images[0]?.src;
   return (
     <section className="screen-section relative overflow-hidden bg-ink text-white">
-      <img className="absolute inset-0 h-full w-full scale-[1.02] object-cover opacity-72 transition duration-700" src={hero} alt={`Render principal ${project.name}`} />
+      {project.home?.mediaType === "video" ? <video className="absolute inset-0 h-full w-full object-cover" src={hero} autoPlay muted loop playsInline /> : <img className="absolute inset-0 h-full w-full scale-[1.02] object-cover opacity-72 transition duration-700" src={hero} alt={`Render principal ${project.name}`} />}
       <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/30 to-transparent" />
       <div className="relative z-10 flex min-h-screen max-w-7xl flex-col justify-between px-6 pb-32 pt-8 md:px-12">
         <header className="flex items-center justify-between">
@@ -88,10 +89,10 @@ function Home({ project, onNavigate }: { project: Project; onNavigate: (view: Vi
           <p className="mt-6 max-w-2xl text-xl leading-relaxed text-white/90">{project.shortDescription}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <button className="primary-touch" onClick={() => onNavigate("project")} type="button">
-              Explorar el proyecto <ArrowRight />
+              {project.home?.primaryButton ?? "Explorar el proyecto"} <ArrowRight />
             </button>
             <button className="home-departments-button" onClick={() => onNavigate("departments")} type="button">
-              DEPARTAMENTOS <Building2 />
+              {project.home?.secondaryButton ?? "DEPARTAMENTOS"} <Building2 />
             </button>
           </div>
         </div>
@@ -343,7 +344,10 @@ function LocationPage({ project, filter, setFilter, onOpenGallery }: { project: 
   const section = getSection(project, "location");
   const activePoiId = hoveredPoiId ?? selectedPoiId;
   const activePoi = visible.find((poi) => poi.id === activePoiId);
+  const entorno = project.galleries.find(g => g.id === "entorno");
   return (
+    <>
+    {entorno?.images.length ? <HorizontalGalleryStory eyebrow="Ubicación" title={entorno.title} text="" gallery={entorno} labels={[]} onOpenGallery={onOpenGallery} /> : null}
     <section className="editorial-page">
       <div className="location-scene">
         <aside className="location-copy">
@@ -422,6 +426,7 @@ function LocationPage({ project, filter, setFilter, onOpenGallery }: { project: 
         </div> */}
       </div>
     </section>
+    </>
   );
 }
 
@@ -758,7 +763,30 @@ function ContactPage({ project }: { project: Project }) {
   );
 }
 
-function AdminPage({ project, updateProject, reload, syncFromRemote }: { project: Project; updateProject: (updater: Project | ((project: Project) => Project)) => Promise<void>; reload: () => Promise<void>; syncFromRemote: () => Promise<Project | null> }) {
+function AdminPage({ project: savedProject, updateProject: persistProject, reload, syncFromRemote, onExit }: { onExit: () => void; project: Project; updateProject: (updater: Project | ((project: Project) => Project)) => Promise<void>; reload: () => Promise<void>; syncFromRemote: (replaceLocal?: boolean) => Promise<Project | null> }) {
+  const [project, setDraft] = useState(savedProject);
+  const [tab, setTab] = useState("home");
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
+  const dirty = project !== savedProject;
+  useEffect(() => { setDraft(savedProject); }, [savedProject]);
+  useEffect(() => {
+    const warn = (event: BeforeUnloadEvent) => { if (dirty) { event.preventDefault(); event.returnValue = ""; } };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [dirty]);
+  const updateProject = async (updater: Project | ((value: Project) => Project)) => {
+    setDraft(current => {
+      const base = current.galleries.some(g => g.id === "entorno") ? current : { ...current, galleries: [...current.galleries, { id: "entorno", title: "Descubre San Isidro", category: "barrio" as const, images: [] }] };
+      return typeof updater === "function" ? updater(base) : updater;
+    });
+  };
+  const save = async () => {
+    setSaving(true); setSaveError("");
+    try { await persistProject(project); } catch { setSaveError("No se pudo guardar. Conserva esta ventana abierta y exporta un respaldo."); }
+    finally { setSaving(false); }
+  };
+  const tabs = [["home", "Inicio"], ["about", "About us"], ["project", "Proyecto"], ["location", "Ubicación"], ["amenities", "Áreas comunes"], ["interiors", "Interiores"], ["departments", "Departamentos"], ["settings", "Configuración"]];
   const [pin, setPin] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [message, setMessage] = useState("");
@@ -794,7 +822,7 @@ function AdminPage({ project, updateProject, reload, syncFromRemote }: { project
 
   const publish = async (change: string) => {
     await updateProject((current) => bumpVersion({ ...current, lastPublishedSnapshot: current }, change));
-    setMessage("Cambios publicados localmente.");
+    setMessage("Versión preparada. Guarda y descarga project.json para publicarlo manualmente en GitHub.");
   };
 
   if (!unlocked) {
@@ -812,16 +840,25 @@ function AdminPage({ project, updateProject, reload, syncFromRemote }: { project
   }
 
   return (
-    <section className="page-wrap">
-      <PageHeading eyebrow="Administrador local" title="Contenido, planos y respaldos" text={`Versión ${project.version.version} · Publicado ${project.version.publishedAt}`} />
-      {message ? <p className="mb-4 rounded border border-morada/20 bg-morada/10 p-3 text-morada">{message}</p> : null}
-      <div className="grid gap-6 xl:grid-cols-[1fr_0.85fr]">
-        <div className="space-y-5">
-          <AdminGeneral project={project} updateProject={updateProject} />
-          <AdminAbout project={project} updateProject={updateProject} />
-          <AdminEditorialContent project={project} updateProject={updateProject} />
-          <AdminGalleries project={project} updateProject={updateProject} />
-          <AdminLocation project={project} updateProject={updateProject} />
+    <section className="cms-shell">
+      <aside className="cms-sidebar">
+        <p className="cms-brand">morada<span>CONTENT STUDIO</span></p>
+        <p className="cms-project">Javier Prado Oeste 2168</p>
+        <nav aria-label="Secciones del administrador">{tabs.map(([id, label], index) => <button key={id} type="button" aria-current={tab === id ? "page" : undefined} onClick={() => setTab(id)}><span>{String(index + 1).padStart(2, "0")}</span>{label}</button>)}</nav>
+        <button className="secondary-touch mt-auto" onClick={() => { if (!dirty || confirm("Hay cambios sin guardar. ¿Salir y descartarlos?")) onExit(); }} type="button">Ver presentación <ArrowRight className="size-4" /></button>
+      </aside>
+      <div className="cms-workspace">
+        <header className="cms-toolbar"><div><p className="eyebrow">Administrador visual</p><h1>{tabs.find(([id]) => id === tab)?.[1]}</h1></div><div className="flex flex-wrap items-center gap-3"><span role="status">{saving ? "Guardando…" : dirty ? "● Cambios sin guardar" : "✓ Guardado localmente"}</span><button className="primary-touch" disabled={saving || !dirty} onClick={() => void save()} type="button"><Save className="size-4" /> Guardar cambios</button></div></header>
+        <p className="cms-publication">Versión local {project.version.version} · GitHub se actualiza manualmente con project.json. Guardar aquí no publica en la web.</p>
+        {(message || saveError) && <p role="status" className="cms-message">{saveError || message}</p>}
+        <div className="cms-content" key={tab}>
+          {tab === "home" && <><AdminHome project={project} updateProject={updateProject} /><AdminGalleries project={project} updateProject={updateProject} ids={["fachada"]} /></>}
+          {tab === "about" && <AdminAbout project={project} updateProject={updateProject} />}
+          {tab === "project" && <><AdminGeneral project={project} updateProject={updateProject} /><AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["project", "architecture"]} /><AdminGalleries project={project} updateProject={updateProject} ids={["proyecto-fachada", "arquitectura"]} /></>}
+          {tab === "location" && <><AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["location"]} /><h2 className="section-title">Descubre San Isidro</h2><AdminGalleries project={project} updateProject={updateProject} ids={["entorno"]} /><h2 className="section-title">Cerca de tu morada</h2><AdminLocation project={project} updateProject={updateProject} /></>}
+          {tab === "amenities" && <><AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["amenities"]} /><AdminGalleries project={project} updateProject={updateProject} ids={["areas"]} /></>}
+          {tab === "interiors" && <><AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["interiors"]} /><AdminGalleries project={project} updateProject={updateProject} ids={["interiores"]} /></>}
+          {tab === "departments" && <div className="cms-departments">
           <div className="rounded border border-ink/10 bg-porcelain p-5">
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end">
               <div className="flex-1">
@@ -849,9 +886,10 @@ function AdminPage({ project, updateProject, reload, syncFromRemote }: { project
               onHotspotChange={(hotspot) => updateProject((current) => ({ ...current, floorPlan: { ...current.floorPlan, hotspots: current.floorPlan.hotspots.map((item) => item.id === hotspot.id ? hotspot : item) } }))}
             />
           </div>
-        </div>
-        <aside className="space-y-5">
           <AdminFiles project={project} selectedTypologyId={selected} updateProject={updateProject} />
+          </div>}
+          {tab === "settings" && <div className="space-y-5">
+          <AdminGeneral project={project} updateProject={updateProject} />
           <div className="rounded border border-ink/10 bg-porcelain p-5">
             <h2 className="section-title">Importación, exportación y respaldo</h2>
             <button className="primary-touch mb-3 w-full" onClick={async () => {
@@ -889,13 +927,15 @@ function AdminPage({ project, updateProject, reload, syncFromRemote }: { project
             </label>
             <button className="secondary-touch mb-3 w-full" onClick={async () => {
               try {
-                const remote = await syncFromRemote();
-                setMessage(remote ? `Contenido sincronizado desde GitHub. Versión ${remote.version.version}.` : "No hay una versión más nueva publicada en GitHub.");
+                if (dirty) { setMessage("Guarda tus cambios antes de sincronizar."); return; }
+                if (!confirm("¿Reemplazar el contenido local por la versión publicada? Exporta un ZIP si deseas conservarlo.")) return;
+                const remote = await syncFromRemote(true);
+                setMessage(remote ? `Contenido sincronizado desde GitHub. Versión ${remote.version.version}.` : "No se pudo obtener contenido publicado. El contenido local sigue intacto.");
               } catch (error) {
                 setMessage(error instanceof Error ? error.message : "No se pudo sincronizar desde GitHub.");
               }
             }} type="button"><RotateCcw /> Sincronizar desde GitHub</button>
-            <button className="secondary-touch mb-3 w-full" onClick={async () => publish("Se publicaron cambios desde el administrador local.")} type="button"><Save /> Publicar cambios</button>
+            <button className="secondary-touch mb-3 w-full" onClick={async () => publish("Se publicaron cambios desde el administrador local.")} type="button"><Save /> Preparar siguiente versión local</button>
             <button className="secondary-touch w-full" onClick={async () => {
               if (confirm("Restaurar la información inicial extraída del PDF?")) {
                 await resetProject();
@@ -910,10 +950,15 @@ function AdminPage({ project, updateProject, reload, syncFromRemote }: { project
               {project.version.changes.map((change) => <p key={change.id} className="border-b border-ink/10 pb-2 text-sm"><strong>{change.date}</strong><br />{change.text}</p>)}
             </div>
           </div>
-        </aside>
+          </div>}
+        </div>
       </div>
     </section>
   );
+}
+
+function AdminHome({ project, updateProject }: { project: Project; updateProject: (updater: (p: Project) => Project) => Promise<void> }) {
+  return <div className="cms-home"><div className="space-y-4"><h2 className="section-title">Contenido de portada</h2>{([["name", "Título principal"], ["tagline", "Subtítulo"], ["shortDescription", "Descripción"]] as const).map(([key, label]) => <label className="block" key={key}>{label}<textarea className="field" value={project[key]} onChange={e => updateProject(p => ({ ...p, [key]: e.target.value }))} /></label>)}<label className="block">Botón principal<input className="field" value={project.home?.primaryButton ?? "Explorar el proyecto"} onChange={e => updateProject(p => ({ ...p, home: { ...p.home, primaryButton: e.target.value } }))} /></label><label className="block">Botón departamentos<input className="field" value={project.home?.secondaryButton ?? "DEPARTAMENTOS"} onChange={e => updateProject(p => ({ ...p, home: { ...p.home, secondaryButton: e.target.value } }))} /></label><label className="secondary-touch cursor-pointer">Cargar imagen o video<input className="hidden" type="file" accept="image/png,image/jpeg,image/svg+xml,video/mp4,video/webm" onChange={async e => { const file = e.target.files?.[0]; if (!file) return; const src = await fileToDataUrl(file); await updateProject(p => ({ ...p, home: { ...p.home, mediaSrc: src, mediaType: file.type.startsWith("video/") ? "video" : "image" } })); }} /></label><label className="secondary-touch cursor-pointer">Cambiar logo<input className="hidden" type="file" accept="image/png,image/jpeg,image/svg+xml" onChange={async e => { const file = e.target.files?.[0]; if (file) { const logoSrc = await fileToDataUrl(file); await updateProject(p => ({ ...p, logoSrc })); } }} /></label></div><div className="cms-preview"><p className="eyebrow">Vista previa de portada</p><Home project={project} onNavigate={() => undefined} /></div></div>;
 }
 
 function AdminGeneral({ project, updateProject }: { project: Project; updateProject: (updater: (project: Project) => Project) => Promise<void> }) {
@@ -936,7 +981,8 @@ function AdminGeneral({ project, updateProject }: { project: Project; updateProj
         <label>Distrito<input className="field" value={project.district} onChange={(event) => setField("district", event.target.value)} /></label>
         <label>Texto alternativo del logo<input className="field" value={project.logoText} onChange={(event) => setField("logoText", event.target.value)} /></label>
         <label>Arquitectos<input className="field" value={project.architect} onChange={(event) => setField("architect", event.target.value)} /></label>
-        <label>Certificación<input className="field" value={project.certification} onChange={(event) => setField("certification", event.target.value)} /></label>
+        <label>Certificación<input className="field" value={project.certification} onChange={(event) => setField("certification", event.target.value)}  /></label>
+        <label className="md:col-span-2 flex items-center gap-2"><input type="checkbox" checked={project.certificationValidated ?? false} onChange={e => updateProject(p => ({ ...p, certificationValidated: e.target.checked }))} /> Certificación verificada documentalmente (no implica nueva acreditación)</label>
         <label className="md:col-span-2">Descripción<textarea className="field min-h-24" value={project.shortDescription} onChange={(event) => setField("shortDescription", event.target.value)} /></label>
       </div>
       <div className="mt-5 rounded border border-ink/10 bg-white p-4">
@@ -1061,9 +1107,10 @@ function AdminAbout({ project, updateProject }: { project: Project; updateProjec
           </div>
         </div>
       </div>
+      <button className="secondary-touch mt-4" type="button" onClick={() => updateAbout({ slides: [...project.about.slides, { id: crypto.randomUUID(), number: String(project.about.slides.length + 1), text: "Reconocimientos", keywords: [] }] })}><Plus className="size-4" /> Agregar contenido o reconocimiento</button>
       <div className="mt-5 space-y-4">
         {project.about.slides.map((slide) => (
-          <article key={slide.id} className="rounded border border-ink/10 bg-white p-4">
+          <details key={slide.id} className="rounded border border-ink/10 bg-white p-4"><summary className="cursor-pointer py-2">Contenido {slide.number} · {slide.text.slice(0, 70)}</summary>
             <div className="grid gap-3 lg:grid-cols-[80px_1fr_260px]">
               <label>Número<input className="field" value={slide.number} onChange={(event) => updateSlide(slide.id, { number: event.target.value })} /></label>
               <label>Texto<textarea className="field min-h-32" value={slide.text} onChange={(event) => updateSlide(slide.id, { text: event.target.value })} /></label>
@@ -1092,7 +1139,7 @@ function AdminAbout({ project, updateProject }: { project: Project; updateProjec
                 placeholder="Separar por comas"
               />
             </label>
-          </article>
+          </details>
         ))}
       </div>
       <div className="mt-5 rounded border border-ink/10 bg-white p-4">
@@ -1144,7 +1191,7 @@ function AdminAbout({ project, updateProject }: { project: Project; updateProjec
   );
 }
 
-function AdminEditorialContent({ project, updateProject }: { project: Project; updateProject: (updater: (project: Project) => Project) => Promise<void> }) {
+function AdminEditorialContent({ project, updateProject, sectionIds }: { sectionIds: string[]; project: Project; updateProject: (updater: (project: Project) => Project) => Promise<void> }) {
   const updateList = (field: "sharedAreas" | "leedAttributes", value: string) =>
     updateProject((current) => ({
       ...current,
@@ -1154,7 +1201,7 @@ function AdminEditorialContent({ project, updateProject }: { project: Project; u
   return (
     <div className="rounded border border-ink/10 bg-porcelain p-5">
       <h2 className="section-title">Contenido editorial</h2>
-      <div className="grid gap-3 md:grid-cols-2">
+      <div className="hidden">
         <label>Frase de portada<input className="field" value={project.tagline} onChange={(event) => updateProject((current) => ({ ...current, tagline: event.target.value }))} /></label>
         <label>Dirección<input className="field" value={project.address} onChange={(event) => updateProject((current) => ({ ...current, address: event.target.value }))} /></label>
         <label>Rango de áreas<input className="field" value={project.areaRange} onChange={(event) => updateProject((current) => ({ ...current, areaRange: event.target.value }))} /></label>
@@ -1162,10 +1209,11 @@ function AdminEditorialContent({ project, updateProject }: { project: Project; u
         <label className="md:col-span-2">Áreas comunes<textarea className="field min-h-28" value={project.sharedAreas.join("\n")} onChange={(event) => updateList("sharedAreas", event.target.value)} /></label>
         <label className="md:col-span-2">Atributos sostenibles<textarea className="field min-h-24" value={project.leedAttributes.join("\n")} onChange={(event) => updateList("leedAttributes", event.target.value)} /></label>
       </div>
+      {sectionIds.includes("project") && <label className="block">Características y atributos<textarea className="field" value={project.leedAttributes.join("\n")} onChange={event => updateList("leedAttributes", event.target.value)} /></label>}
       <div className="mt-6 border-t border-ink/10 pt-5">
         <h3 className="mb-3 font-display text-2xl">Capítulos de la experiencia</h3>
         <div className="grid gap-3 md:grid-cols-2">
-          {project.sections.map((section) => (
+          {project.sections.filter(section => sectionIds.includes(section.id)).map((section) => (
             <div key={section.id} className="rounded border border-ink/10 bg-white p-3">
               <input
                 className="field mt-0"
@@ -1195,7 +1243,7 @@ function AdminEditorialContent({ project, updateProject }: { project: Project; u
   );
 }
 
-function AdminGalleries({ project, updateProject }: { project: Project; updateProject: (updater: (project: Project) => Project) => Promise<void> }) {
+function AdminGalleries({ project, updateProject, ids }: { ids: string[]; project: Project; updateProject: (updater: (project: Project) => Project) => Promise<void> }) {
   const [status, setStatus] = useState("");
 
   const updateGalleryImage = (galleryId: string, imageId: string, patch: Partial<GalleryImage>) =>
@@ -1280,7 +1328,7 @@ function AdminGalleries({ project, updateProject }: { project: Project; updatePr
     setStatus(`${galleryLabel(galleryId)} reemplazada con ${images.length} imagen(es).`);
   };
 
-  const orderedGalleries = [...project.galleries].sort((a, b) => {
+  const orderedGalleries = [...project.galleries, ...(ids.includes("entorno") && !project.galleries.some(g => g.id === "entorno") ? [{ id: "entorno", title: "Descubre San Isidro", category: "barrio" as const, images: [] }] : [])].filter(gallery => ids.includes(gallery.id)).sort((a, b) => {
     const order = ["proyecto-fachada", "fachada", "arquitectura", "areas", "interiores", "barrio"];
     const aIndex = order.includes(a.id) ? order.indexOf(a.id) : 999;
     const bIndex = order.includes(b.id) ? order.indexOf(b.id) : 999;
@@ -1314,7 +1362,7 @@ function AdminGalleries({ project, updateProject }: { project: Project; updatePr
     <div className="rounded border border-ink/10 bg-porcelain p-5">
       <h2 className="section-title">Fotos y galerías</h2>
       {status ? <p className="mb-4 rounded bg-white p-3 text-sm text-ink/70">{status}</p> : null}
-      <div className="mb-5 grid gap-3 md:grid-cols-3">
+      <div className="hidden">
         <label className="flex min-h-24 cursor-pointer flex-col justify-center rounded border border-morada/20 bg-white p-4 text-morada">
           <span className="mb-2 flex items-center gap-2 font-semibold"><Plus className="size-4" /> Agregar imágenes a Proyecto/Fachada</span>
           <span className="text-sm text-ink/70">{imageSizeRecommendation("proyecto-fachada")}</span>
@@ -1391,7 +1439,8 @@ function AdminGalleries({ project, updateProject }: { project: Project; updatePr
             </div>
             <div className="grid gap-3 md:grid-cols-2">
               {gallery.images.map((image, index) => (
-                <article key={image.id} className="grid gap-3 rounded border border-ink/10 bg-white p-3 md:grid-cols-[140px_1fr]">
+                <article key={image.id} draggable onDragStart={event => event.dataTransfer.setData("text/plain", image.id)} onDragOver={event => event.preventDefault()} onDrop={event => { event.preventDefault(); const source = event.dataTransfer.getData("text/plain"); void updateProject(current => ({ ...current, galleries: current.galleries.map(g => { if (g.id !== gallery.id) return g; const images = [...g.images]; const from = images.findIndex(i => i.id === source); if (from < 0) return g; const [moved] = images.splice(from, 1); images.splice(index, 0, moved); return { ...g, images }; }) })); }} className="cms-image-card grid gap-3 rounded border border-ink/10 bg-white p-3 md:grid-cols-[180px_1fr]">
+                  <label className="flex items-center gap-2 text-xs md:col-span-2"><input type="checkbox" checked={!image.hidden} onChange={event => updateGalleryImage(gallery.id, image.id, { hidden: !event.target.checked })} /> Mostrar · {index + 1} · Arrastra para reordenar</label>
                   <img className="h-32 w-full rounded object-cover" src={image.src} alt={image.title} />
                   <div className="space-y-2">
                     <input className="field mt-0" value={image.title} onChange={(event) => updateGalleryImage(gallery.id, image.id, { title: event.target.value })} />
@@ -1430,7 +1479,7 @@ function AdminLocation({ project, updateProject }: { project: Project; updatePro
   const [status, setStatus] = useState("");
   const [selectedPoiId, setSelectedPoiId] = useState(project.pointsOfInterest[0]?.id ?? "");
   const mapFrameRef = useRef<HTMLDivElement | null>(null);
-  const categories: Array<Project["pointsOfInterest"][number]["category"]> = ["Gastronomía", "Parques", "Educación", "Tiendas"];
+  const categories: Array<Project["pointsOfInterest"][number]["category"]> = ["Gastronomía", "Parques", "Educación", "Tiendas", "Entretenimiento"];
   const barrioGallery = project.galleries.find((gallery) => gallery.id === "barrio");
   const mapImage = barrioGallery?.images[0];
   const sortedPois = [...project.pointsOfInterest].sort((a, b) => a.order - b.order);
@@ -1539,12 +1588,7 @@ function AdminLocation({ project, updateProject }: { project: Project; updatePro
                   {categories.map((category) => <option key={category} value={category}>{category}</option>)}
                 </select>
               </label>
-              <label className="text-xs">X %
-                <input className="field" type="number" min="0" max="100" value={poi.x} onFocus={() => setSelectedPoiId(poi.id)} onChange={(event) => updatePoi(poi.id, { x: Number(event.target.value) })} />
-              </label>
-              <label className="text-xs">Y %
-                <input className="field" type="number" min="0" max="100" value={poi.y} onFocus={() => setSelectedPoiId(poi.id)} onChange={(event) => updatePoi(poi.id, { y: Number(event.target.value) })} />
-              </label>
+              <label className="text-xs">Descripción<textarea className="field" value={poi.description ?? ""} onChange={event => updatePoi(poi.id, { description: event.target.value })} /></label>
               <label className="flex items-center gap-2 self-end pb-3 text-xs"><input type="checkbox" checked={poi.visible} onFocus={() => setSelectedPoiId(poi.id)} onChange={(event) => updatePoi(poi.id, { visible: event.target.checked })} /> Visible</label>
               <button className="icon-button self-end" onClick={() => confirm("Eliminar punto?") && void updateProject((current) => ({ ...current, pointsOfInterest: current.pointsOfInterest.filter((item) => item.id !== poi.id) }))} type="button" aria-label="Eliminar punto">
                 <Trash2 className="size-4" />
@@ -1590,6 +1634,7 @@ function AdminTypology({ typology, updateProject }: { typology: Typology; update
             <option value="Demostrativo">Demostrativo</option>
           </select>
         </label>
+        <label className="block">Unidades asociadas (una por línea)<textarea className="field" value={typology.apartments.map(a => a.label).join("\n")} onChange={e => update({ apartments: e.target.value.split("\n").map((label, index) => ({ id: typology.apartments[index]?.id ?? crypto.randomUUID(), label })) })} /></label>
         <label>Notas<textarea className="field min-h-24" value={typology.notes ?? ""} onChange={(event) => update({ notes: event.target.value })} /></label>
         <label className="flex items-center gap-2"><input type="checkbox" checked={typology.active} onChange={(event) => update({ active: event.target.checked })} /> Tipología activa</label>
         <p className="rounded bg-white px-3 py-2 text-sm text-ink/70">

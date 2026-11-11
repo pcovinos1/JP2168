@@ -22,6 +22,7 @@ export interface ProjectSection {
 }
 
 export interface GalleryImage {
+  hidden?: boolean;
   id: string;
   title: string;
   description?: string;
@@ -88,6 +89,7 @@ export interface Typology {
 }
 
 export interface PointOfInterest {
+  description?: string;
   id: string;
   name: string;
   category: "Gastronomía" | "Parques" | "Educación" | "Tiendas" | "Entretenimiento";
@@ -146,6 +148,8 @@ export interface GeneralPlan {
 }
 
 export interface Project {
+  localEditedAt?: string;
+  home?: { mediaSrc?: string; mediaType?: "image" | "video"; primaryButton?: string; secondaryButton?: string };
   generalPlans?: GeneralPlan[];
   plansRevision?: string;
   id: string;
@@ -159,6 +163,7 @@ export interface Project {
   address: string;
   architect: string;
   certification: string;
+  certificationValidated?: boolean;
   status: string;
   areaRange: string;
   typologySummary: string;

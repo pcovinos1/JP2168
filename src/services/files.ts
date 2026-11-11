@@ -105,7 +105,7 @@ function serializeProject(project: Project): string {
   return JSON.stringify(
     project,
     (key, value) => {
-      if (key === "lastPublishedSnapshot") return undefined;
+      if (key === "lastPublishedSnapshot" || key === "localEditedAt") return undefined;
       if (value && typeof value === "object") {
         if (seen.has(value)) return undefined;
         seen.add(value);
@@ -134,6 +134,11 @@ function downloadBlob(blob: Blob, filename: string): void {
 function collectAssetSources(project: Project): string[] {
   const sources = new Set<string>();
   sources.add(project.floorPlan.imageSrc);
+  if (project.logoSrc) sources.add(project.logoSrc);
+  if (project.home?.mediaSrc) sources.add(project.home.mediaSrc);
+  if (project.about.coverImageSrc) sources.add(project.about.coverImageSrc);
+  project.about.slides.forEach(s => { if (s.imageSrc) sources.add(s.imageSrc); });
+  project.about.projects.forEach(p => sources.add(p.imageSrc));
   project.galleries.forEach((gallery) => gallery.images.forEach((image) => sources.add(image.src)));
   project.typologies.forEach((typology) => {
     sources.add(typology.planSrc);

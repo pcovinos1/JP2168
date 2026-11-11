@@ -8,7 +8,7 @@ interface ProjectContextValue {
   loading: boolean;
   updateProject: (updater: Project | ((project: Project) => Project)) => Promise<void>;
   reload: () => Promise<void>;
-  syncFromRemote: () => Promise<Project | null>;
+  syncFromRemote: (replaceLocal?: boolean) => Promise<Project | null>;
 }
 
 const ProjectContext = createContext<ProjectContextValue | null>(null);
@@ -24,7 +24,7 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
     setLoading(false);
     void fetchRemoteProject(next)
       .then(async (remote) => {
-        if (!remote) return;
+        if (!remote || next.localEditedAt) return;
         await saveProject(remote);
         setProject(remote);
       })
@@ -36,18 +36,17 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
   }, [reload]);
 
   const updateProject = useCallback(async (updater: Project | ((project: Project) => Project)) => {
-    setProject((current) => {
-      if (!current) return current;
-      const next = typeof updater === "function" ? updater(current) : updater;
-      void saveProject(next);
-      return next;
-    });
-  }, []);
+    if (!project) return;
+    const next = typeof updater === "function" ? updater(project) : updater;
+    const local = { ...next, localEditedAt: new Date().toISOString() };
+    await saveProject(local);
+    setProject(local);
+  }, [project]);
 
-  const syncFromRemote = useCallback(async () => {
+  const syncFromRemote = useCallback(async (replaceLocal = false) => {
     const current = await getProject();
-    const remote = await fetchRemoteProject(current);
-    if (!remote) return null;
+    const remote = await fetchRemoteProject(replaceLocal ? undefined : current);
+    if (!remote || (current.localEditedAt && !replaceLocal)) return null;
     await saveProject(remote);
     setProject(remote);
     return remote;

@@ -34,7 +34,7 @@ export async function getProject(): Promise<Project> {
 export async function saveProject(project: Project): Promise<void> {
   assertProjectIdentity(project);
   const db = await safeDb();
-  if (!db) return;
+  if (!db) throw new Error("IndexedDB no está disponible.");
   await db.put(STORE, project, PROJECT_KEY);
 }
 
@@ -72,16 +72,9 @@ function normalizeProject(project: Project): Project {
       galleries.push(gallery);
     }
   }
-  const initialBarrio = initialProject.galleries.find((gallery) => gallery.id === "barrio");
-  const normalizedGalleries = galleries.map((gallery) => {
-    if (gallery.id !== "barrio" || !initialBarrio?.images[0]) return gallery;
-    const firstImage = gallery.images[0];
-    if (!firstImage || firstImage.src.startsWith("data:")) return gallery;
-    return {
-      ...gallery,
-      images: [{ ...firstImage, src: initialBarrio.images[0].src, title: initialBarrio.images[0].title }, ...gallery.images.slice(1)]
-    };
-  });
+  const normalizedGalleries = galleries;
+
+  if (!normalizedGalleries.some(g => g.id === "entorno")) normalizedGalleries.push({ id: "entorno", title: "Descubre San Isidro", category: "barrio", images: [] });
 
   const sections = [...project.sections];
   for (const section of initialProject.sections) {
