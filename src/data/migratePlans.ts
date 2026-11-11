@@ -1,42 +1,63 @@
-import type { Project } from "../types/project";
+import type { Project, Typology } from "../types/project";
 import plans from "./jp2168Plans.json";
 import { PROJECT_ID } from "./projectIdentity";
 
-const previousRevision = "jp2168-planos-2026-11-08";
-const previousAssetPath = "content/plans/jp2168-2026-11/";
-const currentAssetPath = plans.floorPlan.imageSrc.slice(0, plans.floorPlan.imageSrc.lastIndexOf("/") + 1);
+const legacyRevisions = ["jp2168-planos-2026-11-08", "jp2168-planos-2026-11-11"];
+const legacyPaths = ["content/plans/jp2168-2026-11/", "content/plans/jp2168-2026-11-11/"];
+const retiredTypology = "jp-duplex-x-09";
+const retiredFloors = /^jp-piso-(2|3|14|15|16)$/;
+const sourceNote = /^Fuente: (PLANOS-JP|planos-finales-jp)\.pdf, página \d+\. Áreas y dimensiones referenciales según ficha\.$/;
 
-function refreshPlanAsset(src: string): string {
-  return src.startsWith(previousAssetPath)
-    ? currentAssetPath + src.slice(previousAssetPath.length)
-    : src;
+function isLegacyAsset(src: string): boolean {
+  return legacyPaths.some(path => src.startsWith(path));
+}
+
+function refreshAsset(src: string, replacement: string): string {
+  return isLegacyAsset(src) ? replacement : src;
 }
 
 export function migratePlans(project: Project): Project {
   if (project.id !== PROJECT_ID || project.plansRevision === plans.plansRevision) return project;
-  if (project.plansRevision === previousRevision) {
-    const typologies = project.typologies.map(plan => ({
-      ...plan,
-      planSrc: refreshPlanAsset(plan.planSrc),
-      thumbnailSrc: refreshPlanAsset(plan.thumbnailSrc),
-      floorThumbnailSrc: refreshPlanAsset(plan.floorThumbnailSrc),
-      notes: plan.notes?.replace(/^Fuente: PLANOS-JP\.pdf, página (\d+)\. Áreas y dimensiones referenciales según ficha\.$/, "Fuente: planos-finales-jp.pdf, página $1. Áreas y dimensiones referenciales según ficha.")
-    }));
-    const generalPlans = (project.generalPlans ?? []).map(plan => ({
-      ...plan,
-      planSrc: refreshPlanAsset(plan.planSrc),
-      thumbnailSrc: refreshPlanAsset(plan.thumbnailSrc)
-    }));
-    const addedFloors = plans.generalPlans.filter(plan =>
-      /^jp-piso-(2|3|14|15|16)$/.test(plan.id) && !generalPlans.some(local => local.id === plan.id)
-    );
-    const roofIndex = generalPlans.findIndex(plan => plan.id === "jp-azotea");
-    generalPlans.splice(roofIndex < 0 ? generalPlans.length : roofIndex, 0, ...structuredClone(addedFloors));
+  if (legacyRevisions.some(revision => revision === project.plansRevision)) {
+    const localTypologies = new Map(project.typologies.map(plan => [plan.id, plan]));
+    const typologies = (plans.typologies as Typology[]).flatMap(plan => {
+      const local = localTypologies.get(plan.id);
+      if (!local) {
+        return ["jp-flat-201", "jp-duplex-1402"].includes(plan.id) ? [structuredClone(plan)] : [];
+      }
+      localTypologies.delete(plan.id);
+      return [{
+        ...local,
+        areaM2: plan.areaM2,
+        planSrc: refreshAsset(local.planSrc, plan.planSrc),
+        thumbnailSrc: refreshAsset(local.thumbnailSrc, plan.thumbnailSrc),
+        floorThumbnailSrc: refreshAsset(local.floorThumbnailSrc, plan.floorThumbnailSrc),
+        notes: !local.notes || sourceNote.test(local.notes) ? plan.notes : local.notes
+      }];
+    });
+    typologies.push(...[...localTypologies.values()].filter(plan =>
+      plan.id !== retiredTypology || !isLegacyAsset(plan.planSrc)
+    ));
+
+    const generalPlans = (project.generalPlans ?? []).filter(plan =>
+      !retiredFloors.test(plan.id) || !isLegacyAsset(plan.planSrc)
+    ).map(plan => {
+      const current = plans.generalPlans.find(candidate => candidate.id === plan.id);
+      if (!current) return plan;
+      return {
+        ...plan,
+        planSrc: refreshAsset(plan.planSrc, current.planSrc),
+        thumbnailSrc: refreshAsset(plan.thumbnailSrc, current.thumbnailSrc)
+      };
+    });
+
     return {
       ...project,
       typologies,
       generalPlans,
-      floorPlan: { ...project.floorPlan, imageSrc: refreshPlanAsset(project.floorPlan.imageSrc) },
+      floorPlan: { ...project.floorPlan, imageSrc: refreshAsset(project.floorPlan.imageSrc, plans.floorPlan.imageSrc) },
+      areaRange: plans.areaRange,
+      typologySummary: plans.typologySummary,
       plansRevision: plans.plansRevision
     };
   }

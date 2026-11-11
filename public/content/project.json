@@ -10,8 +10,8 @@
   "architect": "Metrópolis Arquitectura",
   "certification": "",
   "status": "Lanzamiento",
-  "areaRange": "Desde 80 m² hasta 264 m²",
-  "typologySummary": "14 tipologías de 2 y 3 dormitorios: flats y dúplex.",
+  "areaRange": "Desde 80 m² hasta 217 m²",
+  "typologySummary": "15 tipologías de 2 y 3 dormitorios: flats y dúplex.",
   "sharedAreas": [
     "PISCINA",
     "ZONA DE PARRILLAS",
@@ -227,7 +227,7 @@
   "floorPlan": {
     "id": "jp-planta-tipica",
     "title": "Planta típica · Pisos 4 al 13",
-    "imageSrc": "content/plans/jp2168-2026-11-11/planta-tipica.webp",
+    "imageSrc": "content/plans/jp2168-v6/planta-tipica.webp",
     "hotspots": [],
     "updatedAt": "2026-11-11"
   },
@@ -235,13 +235,13 @@
     {
       "id": "jp-flat-x-01",
       "code": "Flat X-01",
-      "areaM2": 135,
+      "areaM2": 132,
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-01.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-01-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-01-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-flat-x-01.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-01-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-01-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -295,18 +295,18 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 2. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 2. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-02",
       "code": "Dúplex X-02",
-      "areaM2": 133,
+      "areaM2": 132,
       "bedrooms": 3,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-02.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-02-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-02-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-duplex-x-02.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-02-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-02-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -336,18 +336,18 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 3. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 3. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-03",
       "code": "Flat X-03",
-      "areaM2": 131,
+      "areaM2": 132,
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-03.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-03-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-03-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-flat-x-03.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-03-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-03-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -413,7 +413,7 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 4. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 4. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-04",
@@ -422,9 +422,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-04.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-04-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-04-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-flat-x-04.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-04-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-04-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -494,7 +494,7 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 5. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 5. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-05",
@@ -503,9 +503,9 @@
       "bedrooms": 2,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-05.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-05-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-05-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-flat-x-05.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-05-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-05-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -571,7 +571,7 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 6. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 6. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-06",
@@ -580,9 +580,9 @@
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-06.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-06-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-06-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-flat-x-06.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-06-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-06-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -596,18 +596,18 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 7. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 7. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-07",
       "code": "Flat X-07",
-      "areaM2": 134,
+      "areaM2": 131,
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-07.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-07-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-07-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-flat-x-07.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-07-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-07-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -621,18 +621,18 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 8. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 8. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-08",
       "code": "Flat X-08",
-      "areaM2": 132,
+      "areaM2": 131,
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-08.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-08-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-08-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-flat-x-08.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-08-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-08-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -646,43 +646,43 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 9. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 9. Áreas y dimensiones referenciales según ficha."
     },
     {
-      "id": "jp-duplex-x-09",
-      "code": "Dúplex X-09",
-      "areaM2": 264,
+      "id": "jp-duplex-1402",
+      "code": "Dúplex 1402",
+      "areaM2": 131,
       "bedrooms": 3,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-09.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-09-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-09-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-duplex-1402.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-duplex-1402-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-duplex-1402-location.webp",
       "rooms": [],
       "apartments": [
         {
-          "id": "1601",
-          "label": "1601"
+          "id": "1402",
+          "label": "1402"
         }
       ],
       "features": {
-        "terrace": true,
-        "study": true,
+        "terrace": false,
+        "study": false,
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 10. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 10. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-10",
       "code": "Dúplex X-10",
-      "areaM2": 170,
+      "areaM2": 168,
       "bedrooms": 2,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-10.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-10-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-10-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-duplex-x-10.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-10-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-10-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -696,18 +696,18 @@
         "walkInCloset": false
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 11. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 11. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-11",
       "code": "Dúplex X-11",
-      "areaM2": 218,
+      "areaM2": 217,
       "bedrooms": 3,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-11.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-11-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-11-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-duplex-x-11.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-11-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-11-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -721,7 +721,7 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 12. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 12. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-12",
@@ -730,9 +730,9 @@
       "bedrooms": 2,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-12.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-12-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-12-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-duplex-x-12.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-12-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-12-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -746,18 +746,18 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 13. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 13. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-flat-x-13",
       "code": "Flat X-13",
-      "areaM2": 165,
+      "areaM2": 164,
       "bedrooms": 3,
       "format": "Flat",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-13.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-13-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-flat-x-13-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-flat-x-13.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-13-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-x-13-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -771,7 +771,32 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 14. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 14. Áreas y dimensiones referenciales según ficha."
+    },
+    {
+      "id": "jp-flat-201",
+      "code": "Flat 201",
+      "areaM2": 133,
+      "bedrooms": 3,
+      "format": "Flat",
+      "active": true,
+      "planSrc": "content/plans/jp2168-v6/jp-flat-201.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-flat-201-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-flat-201-location.webp",
+      "rooms": [],
+      "apartments": [
+        {
+          "id": "201",
+          "label": "201"
+        }
+      ],
+      "features": {
+        "terrace": false,
+        "study": false,
+        "walkInCloset": true
+      },
+      "updatedAt": "2026-11-11",
+      "notes": "Fuente: v6-planos-jp.pdf, página 15. Áreas y dimensiones referenciales según ficha."
     },
     {
       "id": "jp-duplex-x-14",
@@ -780,9 +805,9 @@
       "bedrooms": 3,
       "format": "Duplex",
       "active": true,
-      "planSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-14.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-14-thumb.webp",
-      "floorThumbnailSrc": "content/plans/jp2168-2026-11-11/jp-duplex-x-14-location.webp",
+      "planSrc": "content/plans/jp2168-v6/jp-duplex-x-14.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-14-thumb.webp",
+      "floorThumbnailSrc": "content/plans/jp2168-v6/jp-duplex-x-14-location.webp",
       "rooms": [],
       "apartments": [
         {
@@ -796,7 +821,7 @@
         "walkInCloset": true
       },
       "updatedAt": "2026-11-11",
-      "notes": "Fuente: planos-finales-jp.pdf, página 15. Áreas y dimensiones referenciales según ficha."
+      "notes": "Fuente: v6-planos-jp.pdf, página 16. Áreas y dimensiones referenciales según ficha."
     }
   ],
   "pointsOfInterest": [
@@ -1331,90 +1356,55 @@
       }
     ]
   },
-  "plansRevision": "jp2168-planos-2026-11-11",
+  "plansRevision": "jp2168-planos-v6",
   "generalPlans": [
     {
       "id": "jp-planta-tipica",
       "title": "Planta típica · Pisos 4 al 13",
-      "planSrc": "content/plans/jp2168-2026-11-11/planta-tipica.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/planta-tipica-thumb.webp",
+      "planSrc": "content/plans/jp2168-v6/planta-tipica.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/planta-tipica-thumb.webp",
       "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-sotano-01",
       "title": "Sótano 01",
-      "planSrc": "content/plans/jp2168-2026-11-11/sotano-01.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/sotano-01-thumb.webp",
+      "planSrc": "content/plans/jp2168-v6/sotano-01.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/sotano-01-thumb.webp",
       "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-sotano-02",
       "title": "Sótano 02",
-      "planSrc": "content/plans/jp2168-2026-11-11/sotano-02.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/sotano-02-thumb.webp",
+      "planSrc": "content/plans/jp2168-v6/sotano-02.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/sotano-02-thumb.webp",
       "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-sotano-03",
       "title": "Sótano 03",
-      "planSrc": "content/plans/jp2168-2026-11-11/sotano-03.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/sotano-03-thumb.webp",
+      "planSrc": "content/plans/jp2168-v6/sotano-03.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/sotano-03-thumb.webp",
       "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-sotano-04",
       "title": "Sótano 04",
-      "planSrc": "content/plans/jp2168-2026-11-11/sotano-04.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/sotano-04-thumb.webp",
+      "planSrc": "content/plans/jp2168-v6/sotano-04.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/sotano-04-thumb.webp",
       "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-piso-1",
       "title": "Piso 1",
-      "planSrc": "content/plans/jp2168-2026-11-11/piso-1.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-1-thumb.webp",
-      "updatedAt": "2026-11-11"
-    },
-    {
-      "id": "jp-piso-2",
-      "title": "Piso 2",
-      "planSrc": "content/plans/jp2168-2026-11-11/piso-2.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-2-thumb.webp",
-      "updatedAt": "2026-11-11"
-    },
-    {
-      "id": "jp-piso-3",
-      "title": "Piso 3",
-      "planSrc": "content/plans/jp2168-2026-11-11/piso-3.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-3-thumb.webp",
-      "updatedAt": "2026-11-11"
-    },
-    {
-      "id": "jp-piso-14",
-      "title": "Piso 14",
-      "planSrc": "content/plans/jp2168-2026-11-11/piso-14.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-14-thumb.webp",
-      "updatedAt": "2026-11-11"
-    },
-    {
-      "id": "jp-piso-15",
-      "title": "Piso 15",
-      "planSrc": "content/plans/jp2168-2026-11-11/piso-15.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-15-thumb.webp",
-      "updatedAt": "2026-11-11"
-    },
-    {
-      "id": "jp-piso-16",
-      "title": "Piso 16",
-      "planSrc": "content/plans/jp2168-2026-11-11/piso-16.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/piso-16-thumb.webp",
+      "planSrc": "content/plans/jp2168-v6/piso-1.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/piso-1-thumb.webp",
       "updatedAt": "2026-11-11"
     },
     {
       "id": "jp-azotea",
       "title": "Azotea",
-      "planSrc": "content/plans/jp2168-2026-11-11/azotea.webp",
-      "thumbnailSrc": "content/plans/jp2168-2026-11-11/azotea-thumb.webp",
+      "planSrc": "content/plans/jp2168-v6/azotea.webp",
+      "thumbnailSrc": "content/plans/jp2168-v6/azotea-thumb.webp",
       "updatedAt": "2026-11-11"
     }
   ]
