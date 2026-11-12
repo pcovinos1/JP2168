@@ -271,9 +271,9 @@
           "id": "jp-culture",
           "title": "Naturaleza",
           "description": "",
-          "src": "content/restored-media/a5deeb8e2aa8bcd13c1a.png",
+          "src": "content/restored-media/a085b255cc6820f70c2f.jpg",
           "category": "barrio",
-          "updatedAt": "2026-11-12T02:23:59.873Z"
+          "updatedAt": "2026-11-12T04:05:30.239Z"
         },
         {
           "id": "jp-architecture",
@@ -287,9 +287,9 @@
           "id": "jp-outdoors",
           "title": "Vida urbana",
           "description": "",
-          "src": "content/restored-media/79c1b8d00e2342624bcb.png",
+          "src": "content/restored-media/f925654a710cc401bdef.jpg",
           "category": "barrio",
-          "updatedAt": "2026-11-12T02:26:09.004Z"
+          "updatedAt": "2026-11-12T04:05:24.068Z"
         }
       ]
     },
@@ -1257,7 +1257,7 @@
     "eyebrow": "Morada",
     "title": "No hay lugar como tu morada",
     "subtitle": "Alta arquitectura peruana",
-    "coverImageSrc": "content/restored-media/a5deeb8e2aa8bcd13c1a.png",
+    "coverImageSrc": "content/restored-media/a085b255cc6820f70c2f.jpg",
     "slides": [
       {
         "id": "about-01",
