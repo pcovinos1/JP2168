@@ -149,6 +149,7 @@ export interface GeneralPlan {
 
 export interface Project {
   localEditedAt?: string;
+  publishedContentRevision?: string;
   home?: { mediaSrc?: string; mediaType?: "image" | "video"; primaryButton?: string; secondaryButton?: string };
   neighborhoodIntro?: { label: string; location: string; title: string; description: string };
   generalPlans?: GeneralPlan[];

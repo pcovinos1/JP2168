@@ -106,7 +106,7 @@ function serializeProject(project: Project): string {
   return JSON.stringify(
     project,
     (key, value) => {
-      if (key === "lastPublishedSnapshot" || key === "localEditedAt") return undefined;
+      if (key === "lastPublishedSnapshot" || key === "localEditedAt" || key === "publishedContentRevision") return undefined;
       if (value && typeof value === "object") {
         if (seen.has(value)) return undefined;
         seen.add(value);
@@ -209,9 +209,19 @@ export function compareProjectVersions(a: Project, b: Project): number {
   return a.version.publishedAt.localeCompare(b.version.publishedAt);
 }
 
-export async function fetchRemoteProject(current?: Project): Promise<Project | null> {
+export async function fetchRemoteProject(current?: Project, networkOnly = false): Promise<Project | null> {
   const base = new URL(import.meta.env.BASE_URL, window.location.origin);
   const url = new URL("content/project.json", base);
+  let publishedRevision: string | undefined;
+  if (networkOnly && import.meta.env.PROD) {
+    const manifest = new URL(`offline-cache-manifest.json?sync=${Date.now()}`, base);
+    const release = await fetch(manifest, { cache: "no-store" });
+    if (!release.ok) return null;
+    const { projectRevision } = await release.json();
+    if (typeof projectRevision !== "string" || projectRevision === current?.publishedContentRevision) return null;
+    publishedRevision = projectRevision;
+    url.searchParams.set("sync", projectRevision);
+  }
   const response = await fetch(url, { cache: "no-store" });
   if (!response.ok) return null;
   const parsed = (await response.json()) as Project;
@@ -219,7 +229,8 @@ export async function fetchRemoteProject(current?: Project): Promise<Project | n
   if (!parsed.id || !parsed.version || !parsed.galleries || !parsed.floorPlan || !parsed.typologies) {
     throw new Error("El contenido publicado en GitHub no tiene un formato válido.");
   }
-  if (current && compareProjectVersions(parsed, current) <= 0) return null;
+  if (publishedRevision && parsed.publishedContentRevision !== publishedRevision) return null;
+  if (!publishedRevision && current && compareProjectVersions(parsed, current) <= 0) return null;
   return migrateNeighborhood(migratePlans(parsed));
 }
 

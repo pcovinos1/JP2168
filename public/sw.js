@@ -9,14 +9,11 @@ async function matchOwnCache(request) {
 const APP_SHELL = ["./", "index.html", "manifest.webmanifest", "icon.svg", "offline-cache-manifest.json"];
 
 async function offlineFiles() {
-  try {
-    const response = await fetch(new URL("offline-cache-manifest.json", self.registration.scope), { cache: "no-store" });
-    if (!response.ok) return APP_SHELL;
-    const manifest = await response.json();
-    return [...new Set([...APP_SHELL, ...(manifest.files || [])])];
-  } catch {
-    return APP_SHELL;
-  }
+  const response = await fetch(new URL("offline-cache-manifest.json", self.registration.scope), { cache: "no-store" });
+  if (!response.ok) throw new Error("Release manifest unavailable");
+  const manifest = await response.json();
+  if (`${CACHE_PREFIX}${manifest.buildRevision}` !== CACHE_NAME) throw new Error("Release manifest does not match worker");
+  return [...new Set([...APP_SHELL, ...manifest.files])];
 }
 
 self.addEventListener("install", (event) => {
@@ -44,33 +41,13 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin || !url.href.startsWith(self.registration.scope)) return;
+  if (url.searchParams.has("sync") &&
+      (url.pathname.endsWith("/offline-cache-manifest.json") || url.pathname.endsWith("/content/project.json"))) return;
 
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request, { cache: "no-store" })
-        .then((response) => {
-          if (response.ok) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put("index.html", clone));
-          }
-          return response;
-        })
-        .catch(() => matchOwnCache(new URL("index.html", self.registration.scope)))
-    );
-    return;
-  }
-
-  if (url.pathname.endsWith("/content/project.json")) {
-    event.respondWith(
-      fetch(event.request, { cache: "no-store" })
-        .then((response) => {
-          if (response.ok) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return response;
-        })
-        .catch(() => matchOwnCache(event.request))
+      matchOwnCache(new URL("index.html", self.registration.scope))
+        .then(cached => cached ?? fetch(event.request, { cache: "no-store" }))
     );
     return;
   }

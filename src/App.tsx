@@ -11,6 +11,7 @@ import { PlanViewer } from "./components/PlanViewer";
 import { useProject } from "./context/ProjectContext";
 import { bumpVersion, exportProjectJson, exportProjectZip, fileToDataUrl, formatBytes, importProjectZip, isAllowedAsset } from "./services/files";
 import { resetProject } from "./services/db";
+import { beforePublishedUpdate } from "./services/publication";
 import type { Gallery, GalleryImage, Project, Typology, ViewKey } from "./types/project";
 
 const menuItems: Array<{ view: ViewKey; title: string; text: string }> = [
@@ -674,9 +675,14 @@ function AdminPage({ project: savedProject, updateProject: persistProject, reloa
   useEffect(() => { setDraft(savedProject); }, [savedProject]);
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => { if (dirty) { event.preventDefault(); event.returnValue = ""; } };
+    const deferUpdate = (event: Event) => { if (dirty || saving) event.preventDefault(); };
     window.addEventListener("beforeunload", warn);
-    return () => window.removeEventListener("beforeunload", warn);
-  }, [dirty]);
+    window.addEventListener(beforePublishedUpdate, deferUpdate);
+    return () => {
+      window.removeEventListener("beforeunload", warn);
+      window.removeEventListener(beforePublishedUpdate, deferUpdate);
+    };
+  }, [dirty, saving]);
   const updateProject = async (updater: Project | ((value: Project) => Project)) => {
     setDraft(current => {
       const base = current.galleries.some(g => g.id === "entorno") ? current : { ...current, galleries: [...current.galleries, { id: "entorno", title: "Descubre San Isidro", category: "barrio" as const, images: [] }] };

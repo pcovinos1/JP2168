@@ -39,6 +39,17 @@ export async function saveProject(project: Project): Promise<void> {
   await db.put(STORE, project, PROJECT_KEY);
 }
 
+export async function savePublishedProject(project: Project, replaceLocal: boolean): Promise<boolean> {
+  assertProjectIdentity(project);
+  const db = await safeDb();
+  if (!db) return true;
+  const transaction = db.transaction(STORE, "readwrite");
+  const current = await transaction.store.get(PROJECT_KEY) as Project | undefined;
+  if (!current?.localEditedAt || replaceLocal) await transaction.store.put(project, PROJECT_KEY);
+  await transaction.done;
+  return !current?.localEditedAt || replaceLocal;
+}
+
 export async function resetProject(): Promise<Project> {
   const db = await safeDb();
   const project = migrateNeighborhood(migratePlans(initialProject));

@@ -1,6 +1,7 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { getProject, saveProject } from "../services/db";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { getProject, saveProject, savePublishedProject } from "../services/db";
 import { fetchRemoteProject } from "../services/files";
+import { canApplyPublishedUpdate } from "../services/publication";
 import type { Project } from "../types/project";
 
 interface ProjectContextValue {
@@ -14,22 +15,21 @@ interface ProjectContextValue {
 const ProjectContext = createContext<ProjectContextValue | null>(null);
 
 export function ProjectProvider({ children }: { children: React.ReactNode }) {
-  const [project, setProject] = useState<Project | null>(null);
+  const [project, setProjectState] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
+  const activeProject = useRef<Project | null>(null);
+  const syncing = useRef(false);
+  const setProject = useCallback((next: Project) => {
+    activeProject.current = next;
+    setProjectState(next);
+  }, []);
 
   const reload = useCallback(async () => {
     setLoading(true);
     const next = await getProject();
     setProject(next);
     setLoading(false);
-    void fetchRemoteProject(next)
-      .then(async (remote) => {
-        if (!remote || next.localEditedAt) return;
-        await saveProject(remote);
-        setProject(remote);
-      })
-      .catch(() => undefined);
-  }, []);
+  }, [setProject]);
 
   useEffect(() => {
     reload();
@@ -41,20 +41,27 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
     const local = { ...next, localEditedAt: new Date().toISOString() };
     await saveProject(local);
     setProject(local);
-  }, [project]);
+  }, [project, setProject]);
 
   const syncFromRemote = useCallback(async (replaceLocal = false) => {
-    const current = await getProject();
-    const remote = await fetchRemoteProject(replaceLocal ? undefined : current);
-    if (!remote || (current.localEditedAt && !replaceLocal)) return null;
-    await saveProject(remote);
-    setProject(remote);
-    return remote;
-  }, []);
+    const current = activeProject.current;
+    if (!current || syncing.current || (!replaceLocal && (current.localEditedAt || !canApplyPublishedUpdate()))) return null;
+    syncing.current = true;
+    try {
+      const remote = await fetchRemoteProject(replaceLocal ? undefined : current, true);
+      if (!remote || current !== activeProject.current || !canApplyPublishedUpdate()) return null;
+      if (!await savePublishedProject(remote, replaceLocal)) return null;
+      if (current === activeProject.current) setProject(remote);
+      return remote;
+    } finally {
+      syncing.current = false;
+    }
+  }, [setProject]);
 
   useEffect(() => {
+    if (loading) return;
     const syncWhenOnline = () => {
-      if (navigator.onLine) void syncFromRemote().catch(() => undefined);
+      if (navigator.onLine && document.visibilityState === "visible") void syncFromRemote().catch(() => undefined);
     };
     const syncWhenVisible = () => {
       if (document.visibilityState === "visible") syncWhenOnline();
@@ -62,14 +69,17 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
     const interval = window.setInterval(syncWhenOnline, 60_000);
     window.addEventListener("online", syncWhenOnline);
     window.addEventListener("focus", syncWhenOnline);
+    window.addEventListener("pageshow", syncWhenOnline);
     document.addEventListener("visibilitychange", syncWhenVisible);
+    syncWhenOnline();
     return () => {
       window.clearInterval(interval);
       window.removeEventListener("online", syncWhenOnline);
       window.removeEventListener("focus", syncWhenOnline);
+      window.removeEventListener("pageshow", syncWhenOnline);
       document.removeEventListener("visibilitychange", syncWhenVisible);
     };
-  }, [syncFromRemote]);
+  }, [loading, syncFromRemote]);
 
   useEffect(() => {
     if (project) document.title = `${project.name} | ${project.developer}`;
