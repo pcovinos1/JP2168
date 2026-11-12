@@ -583,19 +583,18 @@ function FloorPage({ project, selectedTypologyId, setSelectedTypologyId }: { pro
   const typology = project.typologies.find((item) => item.id === selectedTypologyId);
   return (
     <section className="page-wrap">
-      <PageHeading eyebrow="Ubicación en planta" title={typology?.code ?? project.floorPlan.title} text="Ubicación referencial incluida en la ficha del departamento." />
+      <PageHeading eyebrow="Ubicación en planta" title={project.floorPlan.title} />
       <div className="grid gap-6 lg:grid-cols-[1fr_330px]">
         {project.floorPlan.hotspots.some((zone) => project.typologies.some((item) => item.id === zone.typologyId)) ? (
           <FloorPlanInteractive floorPlan={project.floorPlan} typologies={project.typologies} selectedId={selectedTypologyId} onSelect={setSelectedTypologyId} />
         ) : (
-          <PlanViewer src={typology?.floorThumbnailSrc ?? project.floorPlan.imageSrc} title={`Ubicación ${typology?.code ?? "en planta"}`} />
+          <PlanViewer src={project.floorPlan.imageSrc} title={project.floorPlan.title} />
         )}
         <aside className="rounded border border-ink/10 bg-porcelain p-5">
           {typology ? (
             <>
               <p className="text-sm uppercase tracking-[0.25em] text-morada">Seleccionado</p>
               <h2 className="mt-3 font-display text-6xl">{typology.code}</h2>
-              <p className="mt-2 text-xl">Ubicación del departamento</p>
               <img className="mt-5 h-48 w-full rounded bg-white object-contain" src={typology.thumbnailSrc} alt={`Miniatura ${typology.code}`} />
               <button className="primary-touch mt-6 w-full" onClick={() => setPlanOpen(true)} type="button">
                 Ver plano <ArrowRight />
