@@ -118,6 +118,26 @@ export function Neighborhood({ project }: { project: Project }) {
                   ))}
                 </div>
               )}
+              {map && (
+                <ul className="jp-map-legend" aria-label="Lugares del mapa">
+                  <li>
+                    <button type="button" aria-pressed={selectedId === "project"}
+                      onClick={() => setSelectedId(selectedId === "project" ? null : "project")}>
+                      <span className="jp-map-legend-number" aria-hidden="true">2168</span>
+                      {project.address}
+                    </button>
+                  </li>
+                  {points.map(point => (
+                    <li key={point.id}>
+                      <button type="button" aria-pressed={selectedId === point.id}
+                        onClick={() => setSelectedId(selectedId === point.id ? null : point.id)}>
+                        <span className="jp-map-legend-number">{point.order}</span>
+                        {point.name}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             {map ? (
               <NeighborhoodMap key={map.src} src={map.src} address={project.address} projectPosition={neighborhoodProjectPosition}

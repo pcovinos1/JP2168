@@ -204,7 +204,7 @@
   padding: clamp(12px, 2.4vh, 30px) var(--jp-gutter);
   background: var(--jp-paper);
 }
-.jp-environment-copy { align-self: start; min-width: 0; padding-block: clamp(3px, 2vh, 22px); user-select: none; }
+.jp-environment-copy { min-width: 0; min-height: 0; overflow-y: auto; padding-block: clamp(3px, 2vh, 22px); user-select: none; }
 .jp-environment .jp-neighborhood-kicker { color: var(--jp-purple); }
 .jp-environment h2 {
   margin-top: 12px;
@@ -221,6 +221,37 @@
   line-height: 1;
 }
 .jp-map-filters button[aria-pressed="true"] { color: white; background: var(--jp-purple); border-color: var(--jp-purple); }
+.jp-map-legend {
+  display: grid;
+  gap: 3px;
+  margin-top: 12px;
+  padding: 6px 3px;
+  border-top: 1px solid #d9cdd9;
+}
+.jp-map-legend button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 4px 6px;
+  border-radius: 4px;
+  text-align: left;
+  font-size: 13px;
+}
+.jp-map-legend button:hover, .jp-map-legend button[aria-pressed="true"] { background: #eee5f3; }
+.jp-map-legend-number {
+  display: grid;
+  flex: 0 0 auto;
+  min-width: 24px;
+  height: 24px;
+  place-items: center;
+  padding-inline: 4px;
+  border-radius: 999px;
+  background: var(--jp-purple);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+}
 .jp-map {
   position: relative;
   min-height: 0;
@@ -314,6 +345,7 @@
   .jp-environment h2 { margin-top: 6px; }
   .jp-environment-lead, .jp-map-filters { margin-top: 6px; }
   .jp-map-filters { flex-wrap: nowrap; overflow-x: auto; padding: 3px; margin-inline: -3px; }
+  .jp-map-legend { max-height: 88px; margin-top: 4px; overflow-y: auto; }
 }
 @media (max-height: 540px) and (orientation: landscape) {
   .jp-neighborhood { min-height: 340px; }
