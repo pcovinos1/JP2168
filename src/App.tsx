@@ -883,6 +883,7 @@ function AdminGeneral({ project, updateProject }: { project: Project; updateProj
         <label>Texto alternativo del logo<input className="field" value={project.logoText} onChange={(event) => setField("logoText", event.target.value)} /></label>
         <label>Arquitectos<input className="field" value={project.architect} onChange={(event) => setField("architect", event.target.value)} /></label>
         <label>Certificación<input className="field" value={project.certification} onChange={(event) => setField("certification", event.target.value)}  /></label>
+        <label>Áreas<input className="field" value={project.areaRange ?? ""} onChange={(event) => setField("areaRange", event.target.value)} /></label>
         <label className="md:col-span-2 flex items-center gap-2"><input type="checkbox" checked={project.certificationValidated ?? false} onChange={e => updateProject(p => ({ ...p, certificationValidated: e.target.checked }))} /> Certificación verificada documentalmente (no implica nueva acreditación)</label>
         <label className="md:col-span-2">Descripción<textarea className="field min-h-24" value={project.shortDescription} onChange={(event) => setField("shortDescription", event.target.value)} /></label>
       </div>
@@ -1105,7 +1106,6 @@ function AdminEditorialContent({ project, updateProject, sectionIds }: { section
       <div className="hidden">
         <label>Frase de portada<input className="field" value={project.tagline} onChange={(event) => updateProject((current) => ({ ...current, tagline: event.target.value }))} /></label>
         <label>Dirección<input className="field" value={project.address} onChange={(event) => updateProject((current) => ({ ...current, address: event.target.value }))} /></label>
-        <label>Rango de áreas<input className="field" value={project.areaRange} onChange={(event) => updateProject((current) => ({ ...current, areaRange: event.target.value }))} /></label>
         <label>Resumen tipologías<input className="field" value={project.typologySummary} onChange={(event) => updateProject((current) => ({ ...current, typologySummary: event.target.value }))} /></label>
         <label className="md:col-span-2">Áreas comunes<textarea className="field min-h-28" value={project.sharedAreas.join("\n")} onChange={(event) => updateList("sharedAreas", event.target.value)} /></label>
         <label className="md:col-span-2">Atributos sostenibles<textarea className="field min-h-24" value={project.leedAttributes.join("\n")} onChange={(event) => updateList("leedAttributes", event.target.value)} /></label>
