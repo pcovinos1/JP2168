@@ -1,4 +1,4 @@
-import { LocateFixed, MapPin, Minus, Plus, X } from "lucide-react";
+import { LocateFixed, Minus, Plus, X } from "lucide-react";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import type { PointOfInterest } from "../types/project";
 
@@ -173,7 +173,7 @@ export function NeighborhoodMap({ src, address, projectPosition, points, selecte
             tabIndex={isInFrame(projectPin) ? 0 : -1} aria-hidden={!isInFrame(projectPin)}
             aria-label={address} aria-pressed={projectSelected}
             onClick={() => onSelect(projectSelected ? null : "project")}>
-            <MapPin size={17} aria-hidden="true" /><strong>{address}</strong>
+            <strong>2168</strong>
           </button>
         )}
       </div>

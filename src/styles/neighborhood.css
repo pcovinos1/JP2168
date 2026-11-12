@@ -250,29 +250,32 @@
   height: 20px;
   border: 1px solid white;
   border-radius: 50%;
-  background: #fefbf8;
+  background: var(--jp-purple);
+  color: white;
   box-shadow: 0 1px 4px #20182650;
   font-size: 10px;
   font-weight: 750;
 }
 .jp-map-point:focus-visible, .jp-map-point[aria-pressed="true"] { z-index: 2; }
-.jp-map-point:hover span, .jp-map-point[aria-pressed="true"] span { background: var(--jp-purple); color: white; }
+.jp-map-point:hover span, .jp-map-point[aria-pressed="true"] span { background: #3e175e; }
 .jp-project-point {
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  gap: 3px;
-  width: auto;
-  padding-inline: 8px;
-  border: 2px solid white;
-  border-radius: 5px;
-  background: var(--jp-purple);
+  z-index: 3;
+  transform: translate(-50%, calc(-50% - 28px));
   color: white;
-  font-size: 13px;
-  white-space: nowrap;
-  box-shadow: 0 3px 14px #20182640;
+  font-size: 12px;
 }
-.admin-project-point { height: 30px; cursor: default; }
+.jp-project-point::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border: 2px solid white;
+  border-radius: 50% 50% 0 50%;
+  background: var(--jp-purple);
+  transform: rotate(45deg);
+  box-shadow: 0 2px 7px #20182660;
+}
+.jp-project-point strong { position: relative; }
+.jp-project-point:hover::before, .jp-project-point[aria-pressed="true"]::before { background: #3e175e; }
 .jp-map-controls { position: absolute; top: 12px; right: 12px; display: grid; gap: 4px; }
 .jp-map-controls button, .jp-map-selection button {
   display: grid;
