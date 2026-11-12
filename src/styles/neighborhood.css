@@ -258,7 +258,7 @@
 .jp-map-point:focus-visible, .jp-map-point[aria-pressed="true"] { z-index: 2; }
 .jp-map-point:hover span, .jp-map-point[aria-pressed="true"] span { background: var(--jp-purple); color: white; }
 .jp-project-point {
-  z-index: 1;
+  z-index: 2;
   display: flex;
   justify-content: center;
   gap: 3px;
@@ -269,8 +269,10 @@
   background: var(--jp-purple);
   color: white;
   font-size: 13px;
+  white-space: nowrap;
   box-shadow: 0 3px 14px #20182640;
 }
+.admin-project-point { height: 30px; cursor: default; }
 .jp-map-controls { position: absolute; top: 12px; right: 12px; display: grid; gap: 4px; }
 .jp-map-controls button, .jp-map-selection button {
   display: grid;

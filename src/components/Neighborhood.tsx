@@ -1,6 +1,6 @@
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Hand, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { defaultNeighborhoodIntro, neighborhoodMapSrc, neighborhoodProjectPosition } from "../data/neighborhood";
+import { defaultNeighborhoodIntro, neighborhoodProjectPosition } from "../data/neighborhood";
 import type { Project } from "../types/project";
 import { NeighborhoodMap } from "./NeighborhoodMap";
 import "../styles/neighborhood.css";
@@ -9,7 +9,6 @@ export function Neighborhood({ project }: { project: Project }) {
   const intro = project.neighborhoodIntro ?? defaultNeighborhoodIntro;
   const photos = project.galleries.find(gallery => gallery.id === "entorno")?.images ?? [];
   const map = project.galleries.find(gallery => gallery.id === "barrio")?.images[0];
-  const projectPosition = map?.src === neighborhoodMapSrc ? neighborhoodProjectPosition : undefined;
   const [screen, setScreen] = useState(0);
   const [photoId, setPhotoId] = useState("jp-outdoors");
   const [showHint, setShowHint] = useState(true);
@@ -121,7 +120,7 @@ export function Neighborhood({ project }: { project: Project }) {
               )}
             </div>
             {map ? (
-              <NeighborhoodMap key={map.src} src={map.src} address={project.address} projectPosition={projectPosition}
+              <NeighborhoodMap key={map.src} src={map.src} address={project.address} projectPosition={neighborhoodProjectPosition}
                 points={points} selectedId={selectedId} onSelect={setSelectedId} />
             ) : <p className="jp-map-empty">Mapa no disponible.</p>}
           </article>
@@ -140,7 +139,7 @@ export function Neighborhood({ project }: { project: Project }) {
         {isStory && map && (
           <button type="button" className="jp-map-preview" aria-label="Abrir vista previa del mapa del entorno" onClick={() => changeScreen(1)}>
             <img src={map.src} alt="" draggable={false} />
-            {projectPosition && <MapPin size={18} style={{ left: `${projectPosition.x}%`, top: `${projectPosition.y}%` }} />}
+            <MapPin size={18} style={{ left: `${neighborhoodProjectPosition.x}%`, top: `${neighborhoodProjectPosition.y}%` }} />
           </button>
         )}
         <button ref={action} className="jp-neighborhood-action" type="button" onClick={() => changeScreen(isStory ? 1 : 0)}>

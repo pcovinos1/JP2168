@@ -1,6 +1,6 @@
 import { Neighborhood } from "./components/Neighborhood";
-import { defaultNeighborhoodIntro } from "./data/neighborhood";
-import { ArrowRight, ArrowUp, ArrowDown, Building2, Check, ChevronLeft, ChevronRight, Download, FileUp, Grid3X3, Lock, Plus, RotateCcw, Save, Search, Trash2, Upload } from "lucide-react";
+import { defaultNeighborhoodIntro, neighborhoodProjectPosition } from "./data/neighborhood";
+import { ArrowRight, ArrowUp, ArrowDown, Building2, Check, ChevronLeft, ChevronRight, Download, FileUp, Grid3X3, Lock, MapPin, Plus, RotateCcw, Save, Search, Trash2, Upload } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { FullscreenPlan } from "./components/FullscreenPlan";
@@ -1483,6 +1483,11 @@ function AdminLocation({ project, updateProject }: { project: Project; updatePro
                     <em>{poi.name}</em>
                   </button>
                 ))}
+                <div className="jp-map-point jp-project-point admin-project-point"
+                  style={{ left: `${neighborhoodProjectPosition.x}%`, top: `${neighborhoodProjectPosition.y}%` }}
+                  onPointerDown={event => event.stopPropagation()}>
+                  <MapPin size={17} aria-hidden="true" /><strong>{project.address}</strong>
+                </div>
               </div>
             </div>
           ) : null}

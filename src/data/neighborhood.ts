@@ -23,7 +23,7 @@ const story: Gallery = {
 };
 
 export const neighborhoodMapSrc = media("mapa");
-export const neighborhoodProjectPosition = { x: 55.53, y: 51.21 };
+export const neighborhoodProjectPosition = { x: 55.9, y: 53.5 };
 
 const map: Gallery = {
   id: "barrio",

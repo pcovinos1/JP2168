@@ -173,7 +173,7 @@ export function NeighborhoodMap({ src, address, projectPosition, points, selecte
             tabIndex={isInFrame(projectPin) ? 0 : -1} aria-hidden={!isInFrame(projectPin)}
             aria-label={address} aria-pressed={projectSelected}
             onClick={() => onSelect(projectSelected ? null : "project")}>
-            <MapPin size={17} /><strong>2168</strong>
+            <MapPin size={17} aria-hidden="true" /><strong>{address}</strong>
           </button>
         )}
       </div>
