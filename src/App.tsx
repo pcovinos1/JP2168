@@ -1,4 +1,5 @@
 import { Neighborhood } from "./components/Neighborhood";
+import { defaultNeighborhoodIntro } from "./data/neighborhood";
 import { ArrowRight, ArrowUp, ArrowDown, Building2, Check, ChevronLeft, ChevronRight, Download, FileUp, Grid3X3, Lock, Plus, RotateCcw, Save, Search, Trash2, Upload } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -756,7 +757,14 @@ function AdminPage({ project: savedProject, updateProject: persistProject, reloa
           {tab === "home" && <><AdminHome project={project} updateProject={updateProject} /><AdminGalleries project={project} updateProject={updateProject} ids={["fachada"]} /></>}
           {tab === "about" && <AdminAbout project={project} updateProject={updateProject} />}
           {tab === "project" && <><AdminGeneral project={project} updateProject={updateProject} /><AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["project", "architecture"]} /><AdminGalleries project={project} updateProject={updateProject} ids={["proyecto-fachada", "arquitectura"]} /></>}
-          {tab === "location" && <><AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["location"]} /><h2 className="section-title">Descubre San Isidro</h2><AdminGalleries project={project} updateProject={updateProject} ids={["entorno"]} /><h2 className="section-title">Cerca de tu morada</h2><AdminLocation project={project} updateProject={updateProject} /></>}
+          {tab === "location" && <>
+            <AdminNeighborhoodIntro project={project} updateProject={updateProject} />
+            <AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["location"]} />
+            <h2 className="section-title">Descubre San Isidro</h2>
+            <AdminGalleries project={project} updateProject={updateProject} ids={["entorno"]} />
+            <h2 className="section-title">Cerca de tu morada</h2>
+            <AdminLocation project={project} updateProject={updateProject} />
+          </>}
           {tab === "amenities" && <><AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["amenities"]} /><AdminGalleries project={project} updateProject={updateProject} ids={["areas"]} /></>}
           {tab === "interiors" && <><AdminEditorialContent project={project} updateProject={updateProject} sectionIds={["interiors"]} /><AdminGalleries project={project} updateProject={updateProject} ids={["interiores"]} /></>}
           {tab === "departments" && <div className="cms-departments">
@@ -1088,6 +1096,27 @@ function AdminAbout({ project, updateProject }: { project: Project; updateProjec
             </article>
           ))}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function AdminNeighborhoodIntro({ project, updateProject }: { project: Project; updateProject: (updater: (project: Project) => Project) => Promise<void> }) {
+  const intro = project.neighborhoodIntro ?? defaultNeighborhoodIntro;
+  const setField = (field: keyof typeof intro, value: string) =>
+    updateProject(current => ({
+      ...current,
+      neighborhoodIntro: { ...(current.neighborhoodIntro ?? defaultNeighborhoodIntro), [field]: value }
+    }));
+
+  return (
+    <div className="rounded border border-ink/10 bg-porcelain p-5">
+      <h2 className="section-title">Textos de El barrio</h2>
+      <div className="grid gap-3 md:grid-cols-2">
+        <label>Etiqueta superior<input className="field" value={intro.label} onChange={event => setField("label", event.target.value)} /></label>
+        <label>Ubicación<input className="field" value={intro.location} onChange={event => setField("location", event.target.value)} /></label>
+        <label className="md:col-span-2">Título principal<textarea className="field" rows={2} value={intro.title} onChange={event => setField("title", event.target.value)} /></label>
+        <label className="md:col-span-2">Descripción<textarea className="field" rows={3} value={intro.description} onChange={event => setField("description", event.target.value)} /></label>
       </div>
     </div>
   );

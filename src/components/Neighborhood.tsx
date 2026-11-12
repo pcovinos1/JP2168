@@ -1,11 +1,12 @@
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Hand, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { neighborhoodMapSrc, neighborhoodProjectPosition } from "../data/neighborhood";
+import { defaultNeighborhoodIntro, neighborhoodMapSrc, neighborhoodProjectPosition } from "../data/neighborhood";
 import type { Project } from "../types/project";
 import { NeighborhoodMap } from "./NeighborhoodMap";
 import "../styles/neighborhood.css";
 
 export function Neighborhood({ project }: { project: Project }) {
+  const intro = project.neighborhoodIntro ?? defaultNeighborhoodIntro;
   const photos = project.galleries.find(gallery => gallery.id === "entorno")?.images ?? [];
   const map = project.galleries.find(gallery => gallery.id === "barrio")?.images[0];
   const projectPosition = map?.src === neighborhoodMapSrc ? neighborhoodProjectPosition : undefined;
@@ -79,7 +80,7 @@ export function Neighborhood({ project }: { project: Project }) {
               ))}
             </div>
             <div className="jp-story-shade" />
-            <p className="jp-neighborhood-kicker jp-story-kicker">El barrio <span /> San Isidro</p>
+            <p className="jp-neighborhood-kicker jp-story-kicker">{intro.label} <span /> {intro.location}</p>
             {photos.length > 1 && (
               <div className="jp-photo-arrows">
                 <button type="button" aria-label="Fotografía anterior" onClick={() => stepPhoto(-1)}><ChevronLeft size={22} /></button>
@@ -88,8 +89,8 @@ export function Neighborhood({ project }: { project: Project }) {
             )}
             {active?.description && <p className="jp-story-caption">{active.description}</p>}
             <div className="jp-story-copy">
-              <h1>San Isidro, parte<br className="jp-story-break" /> de nuestra esencia.</h1>
-              <p>Entre arquitectura, áreas verdes y una vibrante vida urbana, descubre un entorno que conecta lo mejor de San Isidro.</p>
+              <h1>{intro.title}</h1>
+              <p>{intro.description}</p>
             </div>
             {photos.length > 0 && (
               <div className="jp-filmstrip" role="group" aria-label="Fotografías del entorno">

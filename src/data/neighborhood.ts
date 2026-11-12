@@ -2,6 +2,13 @@ import type { Gallery, PointOfInterest, Project } from "../types/project";
 
 const media = (name: string) => `${import.meta.env.BASE_URL}content/location/${name}.webp`;
 
+export const defaultNeighborhoodIntro: NonNullable<Project["neighborhoodIntro"]> = {
+  label: "El barrio",
+  location: "San Isidro",
+  title: "San Isidro, parte\nde nuestra esencia.",
+  description: "Entre arquitectura, áreas verdes y una vibrante vida urbana, descubre un entorno que conecta lo mejor de San Isidro."
+};
+
 // JP2168 brochure photography and Morada’s Basadre 1101 façade photograph.
 const story: Gallery = {
   id: "entorno",

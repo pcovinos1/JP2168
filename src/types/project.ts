@@ -150,6 +150,7 @@ export interface GeneralPlan {
 export interface Project {
   localEditedAt?: string;
   home?: { mediaSrc?: string; mediaType?: "image" | "video"; primaryButton?: string; secondaryButton?: string };
+  neighborhoodIntro?: { label: string; location: string; title: string; description: string };
   generalPlans?: GeneralPlan[];
   plansRevision?: string;
   id: string;

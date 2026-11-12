@@ -92,7 +92,7 @@
   font-weight: 400;
   letter-spacing: -.055em;
 }
-.jp-story h1 { font-size: clamp(38px, min(7.1vw, 11vh), 116px); line-height: .98; }
+.jp-story h1 { font-size: clamp(38px, min(7.1vw, 11vh), 116px); line-height: .98; white-space: pre-line; }
 .jp-story-copy p {
   margin-top: clamp(12px, 2.6vh, 28px);
   max-width: 32rem;
@@ -315,7 +315,7 @@
   .jp-neighborhood-footer { min-height: 64px; padding-block: 6px; }
   .jp-map-preview { height: 44px; }
   .jp-story h1 { font-size: clamp(30px, 9vh, 47px); }
-  .jp-story-break { display: none; }
+  .jp-story h1 { white-space: normal; }
   .jp-story-copy { bottom: 75px; }
   .jp-story-caption { max-width: 38%; }
   .jp-filmstrip { bottom: 8px; }
