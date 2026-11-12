@@ -1,5 +1,5 @@
 import { LocateFixed, Minus, Plus, X } from "lucide-react";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import type { PointOfInterest } from "../types/project";
 
 type Position = { x: number; y: number };
@@ -8,6 +8,13 @@ type Camera = Position & { zoom: number };
 const overview = { x: 50, y: 50, zoom: 1 };
 const maxZoom = 4;
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+
+function measurePinch([first, second]: Position[]) {
+  return {
+    distance: Math.hypot(first.x - second.x, first.y - second.y),
+    center: { x: (first.x + second.x) / 2, y: (first.y + second.y) / 2 }
+  };
+}
 
 interface Props {
   src: string;
@@ -21,9 +28,13 @@ interface Props {
 export function NeighborhoodMap({ src, address, projectPosition, points, selectedId, onSelect }: Props) {
   const canvas = useRef<HTMLDivElement>(null);
   const drag = useRef<{ id: number; start: Position; camera: Camera; moved: boolean }>();
+  const touches = useRef(new Map<number, Position>());
+  const pinch = useRef<{ distance: number; center: Position; camera: Camera }>();
+  const suppressClick = useRef(false);
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
   const [natural, setNatural] = useState({ width: 0, height: 0 });
-  const [camera, setCamera] = useState(overview);
+  const [camera, renderCamera] = useState(overview);
+  const currentCamera = useRef(overview);
   const [dragging, setDragging] = useState(false);
   const fit = natural.width && natural.height
     ? Math.min(Math.max(0, viewport.width - 32) / natural.width, Math.max(0, viewport.height - 32) / natural.height)
@@ -45,15 +56,97 @@ export function NeighborhoodMap({ src, address, projectPosition, points, selecte
     return () => observer.disconnect();
   }, []);
 
+  function setCamera(next: Camera) {
+    currentCamera.current = next;
+    renderCamera(next);
+  }
+
   function zoom(factor: number) {
-    setCamera(current => {
-      const zoom = clamp(current.zoom * factor, 1, maxZoom);
-      return zoom === 1 ? overview : { ...current, zoom };
-    });
+    const current = currentCamera.current;
+    const zoom = clamp(current.zoom * factor, 1, maxZoom);
+    setCamera(zoom === 1 ? overview : { ...current, zoom });
   }
 
   function pan(x: number, y: number, start: Camera) {
     setCamera({ x: clamp(start.x - x, 0, 100), y: clamp(start.y - y, 0, 100), zoom: start.zoom });
+  }
+
+  function startPointer(event: PointerEvent<HTMLDivElement>) {
+    if (event.button !== 0 || !fit) return;
+    const position = { x: event.clientX, y: event.clientY };
+    const active = touches.current;
+    if (event.pointerType === "touch") {
+      if (active.size >= 2) return;
+      active.set(event.pointerId, position);
+      if (active.size === 2) {
+        pinch.current = { ...measurePinch([...active.values()]), camera: currentCamera.current };
+        drag.current = undefined;
+        suppressClick.current = true;
+        for (const id of active.keys()) event.currentTarget.setPointerCapture(id);
+        setDragging(true);
+        return;
+      }
+    }
+    if (!event.isPrimary || drag.current) return;
+    suppressClick.current = false;
+    drag.current = { id: event.pointerId, start: position, camera: currentCamera.current, moved: false };
+  }
+
+  function movePointer(event: PointerEvent<HTMLDivElement>) {
+    const active = touches.current;
+    if (active.has(event.pointerId)) {
+      active.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      const start = pinch.current;
+      if (start) {
+        const next = measurePinch([...active.values()]);
+        if (start.distance < 1) {
+          pinch.current = { ...next, camera: currentCamera.current };
+          return;
+        }
+        const scale = clamp(start.camera.zoom * next.distance / start.distance, 1, maxZoom);
+        if (scale === 1) {
+          setCamera(overview);
+          return;
+        }
+        const rect = event.currentTarget.getBoundingClientRect();
+        const centerX = rect.left + viewport.width / 2;
+        const centerY = rect.top + viewport.height / 2;
+        const width = natural.width * fit;
+        const height = natural.height * fit;
+        setCamera({
+          x: clamp(start.camera.x + 100 * ((start.center.x - centerX) / start.camera.zoom - (next.center.x - centerX) / scale) / width, 0, 100),
+          y: clamp(start.camera.y + 100 * ((start.center.y - centerY) / start.camera.zoom - (next.center.y - centerY) / scale) / height, 0, 100),
+          zoom: scale
+        });
+        return;
+      }
+    }
+
+    const start = drag.current;
+    if (start?.id !== event.pointerId) return;
+    const dx = event.clientX - start.start.x;
+    const dy = event.clientY - start.start.y;
+    if (!start.moved) {
+      if (Math.hypot(dx, dy) < 6) return;
+      start.moved = true;
+      suppressClick.current = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+      setDragging(true);
+    }
+    pan(dx / (natural.width * fit * start.camera.zoom) * 100, dy / (natural.height * fit * start.camera.zoom) * 100, start.camera);
+  }
+
+  function stopPointer(event: PointerEvent<HTMLDivElement>) {
+    const active = touches.current;
+    if (active.delete(event.pointerId) && pinch.current) {
+      pinch.current = undefined;
+      for (const [id, start] of active) {
+        drag.current = { id, start, camera: currentCamera.current, moved: true };
+        return;
+      }
+    }
+    if (drag.current?.id === event.pointerId) drag.current = undefined;
+    if (!drag.current) setDragging(false);
   }
 
   function pinStyle(point: Position) {
@@ -94,40 +187,18 @@ export function NeighborhoodMap({ src, address, projectPosition, points, selecte
         role="region"
         aria-label="Mapa interactivo de San Isidro"
         tabIndex={0}
-        onPointerDown={event => {
-          if (!event.isPrimary || event.button !== 0 || !width || !height) return;
-          drag.current = { id: event.pointerId, start: { x: event.clientX, y: event.clientY }, camera, moved: false };
-        }}
-        onPointerMove={event => {
-          const start = drag.current;
-          if (start?.id !== event.pointerId) return;
-          const dx = event.clientX - start.start.x;
-          const dy = event.clientY - start.start.y;
-          if (!start.moved) {
-            if (Math.hypot(dx, dy) < 6) return;
-            start.moved = true;
-            event.currentTarget.setPointerCapture(event.pointerId);
-            setDragging(true);
-          }
-          pan(dx / width * 100, dy / height * 100, start.camera);
-        }}
-        onPointerUp={event => {
-          if (drag.current?.id !== event.pointerId) return;
-          drag.current = undefined;
-          setDragging(false);
-        }}
+        onPointerDown={startPointer}
+        onPointerMove={movePointer}
+        onPointerUp={stopPointer}
         onPointerLeave={event => {
-          if (drag.current?.id === event.pointerId && !drag.current.moved) drag.current = undefined;
+          if (!event.currentTarget.hasPointerCapture(event.pointerId)) stopPointer(event);
         }}
         onLostPointerCapture={event => {
-          if (event.target === event.currentTarget && drag.current?.id === event.pointerId) {
-            drag.current = undefined;
-            setDragging(false);
-          }
+          if (event.target === event.currentTarget) stopPointer(event);
         }}
-        onPointerCancel={() => {
-          drag.current = undefined;
-          setDragging(false);
+        onPointerCancel={stopPointer}
+        onClickCapture={event => {
+          if (suppressClick.current && event.detail > 0) event.stopPropagation();
         }}
         onKeyDown={event => {
           if (event.target !== event.currentTarget) return;
