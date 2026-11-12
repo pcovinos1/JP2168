@@ -488,7 +488,13 @@ function DepartmentsPage({ project, selectedTypologyId, setSelectedTypologyId, o
   const [area, setArea] = useState("Todas");
   const [openTypologyId, setOpenTypologyId] = useState("");
   const [generalPlanId, setGeneralPlanId] = useState("");
-  const generalPlan = project.generalPlans?.find(plan => plan.id === generalPlanId);
+  const typicalPlan = project.generalPlans?.find(plan => plan.id === project.floorPlan.id) ?? {
+    title: project.floorPlan.title,
+    planSrc: project.floorPlan.imageSrc
+  };
+  const generalPlan = generalPlanId === project.floorPlan.id
+    ? typicalPlan
+    : project.generalPlans?.find(plan => plan.id === generalPlanId);
   const typologies = project.typologies.filter((item) => item.active);
   const filtered = typologies.filter((item) => (format === "Todos" || item.format === format) && (area === "Todas" || (area === "<100" ? item.areaM2 < 100 : area === "100-150" ? item.areaM2 >= 100 && item.areaM2 <= 150 : item.areaM2 > 150)));
   const openIndex = filtered.findIndex((item) => item.id === openTypologyId);
@@ -507,7 +513,7 @@ function DepartmentsPage({ project, selectedTypologyId, setSelectedTypologyId, o
             {value === "Todas" ? "Todas las áreas" : value === "<100" ? "Menos de 100 m²" : value === "100-150" ? "100 a 150 m²" : "Más de 150 m²"}
           </button>
         ))}
-        <button className="primary-touch ml-auto" onClick={() => onNavigate("floor")} type="button">
+        <button className="primary-touch ml-auto" onClick={() => setGeneralPlanId(project.floorPlan.id)} type="button">
           Ver ubicación en planta <Grid3X3 />
         </button>
         <button className="secondary-touch" onClick={() => onNavigate("compare")} type="button">
