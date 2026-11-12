@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useId, useLayoutEffect, useRef } from "react";
+import type { ReactNode } from "react";
 import { PlanViewer } from "./PlanViewer";
 
 interface Props {
@@ -7,9 +8,10 @@ interface Props {
   title: string;
   onClose: () => void;
   onMove?: (direction: -1 | 1) => void;
+  toolbarActions?: ReactNode;
 }
 
-export function FullscreenPlan({ src, title, onClose, onMove }: Props) {
+export function FullscreenPlan({ src, title, onClose, onMove, toolbarActions }: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const titleId = useId();
@@ -48,6 +50,7 @@ export function FullscreenPlan({ src, title, onClose, onMove }: Props) {
           <div className="flex min-w-0 grow items-center justify-between gap-2">
             <h2 id={titleId} className="min-w-0 text-base font-semibold sm:text-xl" aria-live="polite">{title}</h2>
             <div className="flex shrink-0 items-center gap-1">
+              {toolbarActions}
               {onMove && (
                 <>
                   <button className="icon-button" type="button" onClick={() => onMove(-1)} aria-label="Anterior" title="Anterior">

@@ -495,6 +495,9 @@ function DepartmentsPage({ project, selectedTypologyId, setSelectedTypologyId, o
   const generalPlan = generalPlanId === project.floorPlan.id
     ? typicalPlan
     : project.generalPlans?.find(plan => plan.id === generalPlanId);
+  const hasFloorZones = project.floorPlan.hotspots.some(zone =>
+    project.typologies.some(typology => typology.id === zone.typologyId)
+  );
   const typologies = project.typologies.filter((item) => item.active);
   const filtered = typologies.filter((item) => (format === "Todos" || item.format === format) && (area === "Todas" || (area === "<100" ? item.areaM2 < 100 : area === "100-150" ? item.areaM2 >= 100 && item.areaM2 <= 150 : item.areaM2 > 150)));
   const openIndex = filtered.findIndex((item) => item.id === openTypologyId);
@@ -544,7 +547,10 @@ function DepartmentsPage({ project, selectedTypologyId, setSelectedTypologyId, o
               >
                 Ver plano
               </button>
-              <button className="secondary-touch relative z-10 flex-1" onClick={() => { setSelectedTypologyId(typology.id); onNavigate("floor"); }} type="button">
+              <button className="secondary-touch relative z-10 flex-1" onClick={() => {
+                setSelectedTypologyId(typology.id);
+                setGeneralPlanId(project.floorPlan.id);
+              }} type="button">
                 En planta
               </button>
             </div>
@@ -566,7 +572,14 @@ function DepartmentsPage({ project, selectedTypologyId, setSelectedTypologyId, o
         </div>
       )}
       {generalPlan && (
-        <FullscreenPlan src={generalPlan.planSrc} title={generalPlan.title} onClose={() => setGeneralPlanId("")} />
+        <FullscreenPlan
+          src={generalPlan.planSrc}
+          title={generalPlan.title}
+          onClose={() => setGeneralPlanId("")}
+          toolbarActions={generalPlanId === project.floorPlan.id && hasFloorZones ? (
+            <button className="secondary-touch" type="button" onClick={() => onNavigate("floor")}>Ver zonas</button>
+          ) : undefined}
+        />
       )}
       {openTypology && (
         <FullscreenPlan
