@@ -16,10 +16,12 @@ let claimed = false;
 let manifestResponse;
 let precached;
 let skippedWaiting = false;
+const warmed = [];
 const cachedResponse = { source: 'jp2168' };
 const worker = fs.readFileSync('dist/sw.js', 'utf8');
 assert.ok(!worker.includes('__BUILD_REVISION__'));
 const cacheName = worker.match(/CACHE_PREFIX\}([^`]+)/)[1];
+const currentCache = `javier-prado-oeste-2168-${cacheName}`;
 vm.runInNewContext(worker, {
   URL, Request, Response,
   fetch: async () => {
@@ -34,13 +36,16 @@ vm.runInNewContext(worker, {
     addEventListener: (name, handler) => { listeners[name] = handler; }
   },
   caches: {
-    keys: async () => ['bustamante-175-planos-2026-11', 'other-app', 'javier-prado-oeste-2168-old', `javier-prado-oeste-2168-${cacheName}`],
+    keys: async () => ['bustamante-175-planos-2026-11', 'other-app', 'javier-prado-oeste-2168-old', currentCache, 'javier-prado-oeste-2168-future'],
     delete: async key => { deleted.push(key); },
     open: async key => {
       assert.equal(key, `javier-prado-oeste-2168-${cacheName}`);
       return {
         addAll: async requests => { precached = requests.map(request => request.url); },
+        add: async request => { warmed.push(request.url); },
+        put: async () => {},
         match: async (_request, options) => {
+          if (manifestResponse) return undefined;
           assert.equal(options?.ignoreVary, true);
           return cachedResponse;
         }
@@ -51,7 +56,7 @@ vm.runInNewContext(worker, {
 let activation;
 listeners.activate({ waitUntil: promise => { activation = promise; } });
 await activation;
-assert.deepEqual(deleted, ['javier-prado-oeste-2168-old']);
+assert.deepEqual(deleted, []);
 assert.ok(claimed);
 for (const path of ['index.html', 'assets/example.js', 'content/project.json']) {
   let response;
@@ -81,7 +86,14 @@ assert.equal(skippedWaiting, false);
 manifestResponse = Response.json(manifest);
 await install();
 assert.ok(skippedWaiting);
-assert.ok(precached.includes('https://example.test/JP2168/content/project.json'));
+assert.ok(precached.some(url => /\/assets\/.*\.js$/.test(url)));
+assert.ok(!precached.includes('https://example.test/JP2168/content/project.json'));
+manifestResponse = Response.json(manifest);
+let warming;
+listeners.message({ data: 'prepare-offline', waitUntil: promise => { warming = promise; } });
+await warming;
+assert.ok(warmed.includes('https://example.test/JP2168/content/project.json'));
+assert.deepEqual(deleted, ['javier-prado-oeste-2168-old']);
 for (const file of manifest.files.filter(file => file !== './')) assert.ok(fs.existsSync(`dist/${file}`), file);
 for (const asset of ['arquitectura', 'cultura', 'espacios', 'gastronomia', 'mapa']) {
   assert.ok(manifest.files.includes(`content/location/${asset}.webp`));

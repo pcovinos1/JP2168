@@ -33,7 +33,10 @@ if ("serviceWorker" in navigator && import.meta.env.PROD) {
       const checkForUpdate = () => {
         if (document.visibilityState !== "visible") return;
         applyUpdate();
-        if (navigator.onLine) void registration.update().catch(() => undefined);
+        if (navigator.onLine) {
+          workers.controller?.postMessage("prepare-offline");
+          void registration.update().catch(() => undefined);
+        }
       };
       window.addEventListener("online", checkForUpdate);
       window.addEventListener("pageshow", checkForUpdate);

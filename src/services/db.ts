@@ -9,6 +9,7 @@ import { migratePlans } from "../data/migratePlans";
 const DB_NAME = `${PROJECT_ID}-local`;
 const STORE = "project";
 const PROJECT_KEY = "active";
+const LOCAL_BACKUP_KEY = "before-publication";
 
 const dbPromise = openDB(DB_NAME, 1, {
   upgrade(db) {
@@ -39,15 +40,25 @@ export async function saveProject(project: Project): Promise<void> {
   await db.put(STORE, project, PROJECT_KEY);
 }
 
-export async function savePublishedProject(project: Project, replaceLocal: boolean): Promise<boolean> {
+export async function savePublishedProject(project: Project, expected: Project, replaceLocal: boolean): Promise<boolean> {
   assertProjectIdentity(project);
   const db = await safeDb();
   if (!db) return true;
   const transaction = db.transaction(STORE, "readwrite");
   const current = await transaction.store.get(PROJECT_KEY) as Project | undefined;
-  if (!current?.localEditedAt || replaceLocal) await transaction.store.put(project, PROJECT_KEY);
+  const unchanged = current?.localEditedAt === expected.localEditedAt &&
+    current?.publishedContentRevision === expected.publishedContentRevision;
+  if (replaceLocal || unchanged) {
+    if (current?.localEditedAt) await transaction.store.put(current, LOCAL_BACKUP_KEY);
+    await transaction.store.put(project, PROJECT_KEY);
+  }
   await transaction.done;
-  return !current?.localEditedAt || replaceLocal;
+  return replaceLocal || unchanged;
+}
+
+export async function getLocalPublicationBackup(): Promise<Project | undefined> {
+  const db = await safeDb();
+  return db?.get(STORE, LOCAL_BACKUP_KEY);
 }
 
 export async function resetProject(): Promise<Project> {

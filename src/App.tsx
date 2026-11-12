@@ -10,7 +10,7 @@ import { GlobalNav } from "./components/GlobalNav";
 import { PlanViewer } from "./components/PlanViewer";
 import { useProject } from "./context/ProjectContext";
 import { bumpVersion, exportProjectJson, exportProjectZip, fileToDataUrl, formatBytes, importProjectZip, isAllowedAsset } from "./services/files";
-import { resetProject } from "./services/db";
+import { getLocalPublicationBackup, resetProject } from "./services/db";
 import { beforePublishedUpdate } from "./services/publication";
 import type { Gallery, GalleryImage, Project, Typology, ViewKey } from "./types/project";
 
@@ -850,6 +850,15 @@ function AdminPage({ project: savedProject, updateProject: persistProject, reloa
                 setMessage(error instanceof Error ? error.message : "No se pudo sincronizar desde GitHub.");
               }
             }} type="button"><RotateCcw /> Sincronizar desde GitHub</button>
+            <button className="secondary-touch mb-3 w-full" onClick={async () => {
+              try {
+                const backup = await getLocalPublicationBackup();
+                if (backup) await exportProjectZip(backup);
+                else setMessage("Aún no hay una copia de ediciones locales anteriores a una publicación.");
+              } catch {
+                setMessage("No se pudo descargar la copia de las ediciones locales.");
+              }
+            }} type="button"><Download /> Descargar copia de ediciones locales</button>
             <button className="secondary-touch mb-3 w-full" onClick={async () => publish("Se publicaron cambios desde el administrador local.")} type="button"><Save /> Preparar siguiente versión local</button>
             <button className="secondary-touch w-full" onClick={async () => {
               if (confirm("Restaurar la información inicial extraída del PDF?")) {

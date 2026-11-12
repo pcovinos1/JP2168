@@ -7,9 +7,12 @@ async function matchOwnCache(request) {
   return (await caches.open(CACHE_NAME)).match(request, { ignoreVary: true });
 }
 const APP_SHELL = ["./", "index.html", "manifest.webmanifest", "icon.svg", "offline-cache-manifest.json"];
+const scopeUrl = (path) => new URL(path, self.registration.scope);
+const requestFresh = (path) => new Request(scopeUrl(path), { cache: "reload" });
+let warmingCache;
 
 async function offlineFiles() {
-  const response = await fetch(new URL("offline-cache-manifest.json", self.registration.scope), { cache: "no-store" });
+  const response = await fetch(scopeUrl("offline-cache-manifest.json"), { cache: "no-store" });
   if (!response.ok) throw new Error("Release manifest unavailable");
   const manifest = await response.json();
   if (`${CACHE_PREFIX}${manifest.buildRevision}` !== CACHE_NAME) throw new Error("Release manifest does not match worker");
@@ -20,7 +23,9 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
       const files = await offlineFiles();
-      await cache.addAll(files.map((file) => new Request(new URL(file, self.registration.scope), { cache: "reload" })));
+      const shell = files.filter(file => APP_SHELL.includes(file) ||
+        (file.startsWith("assets/") && /\.(js|css)$/.test(file)));
+      await cache.addAll(shell.map(requestFresh));
       await self.skipWaiting();
     })
   );
@@ -28,13 +33,28 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches
-      .keys()
-      .then((keys) => Promise.all(keys.filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME).map((key) => caches.delete(key))))
-      .then(() => self.clients.claim())
-  );
+  event.waitUntil(self.clients.claim());
+});
 
+async function warmOfflineCache() {
+  const cache = await caches.open(CACHE_NAME);
+  const ready = scopeUrl(".offline-ready");
+  if (await cache.match(ready)) return;
+  const files = await offlineFiles();
+  for (const file of files) {
+    const request = requestFresh(file);
+    if (!await cache.match(request, { ignoreVary: true })) await cache.add(request);
+  }
+  await cache.put(ready, new Response("ready"));
+  const keys = await caches.keys();
+  const previous = keys.slice(0, keys.indexOf(CACHE_NAME)).filter(key => key.startsWith(CACHE_PREFIX));
+  await Promise.all(previous.map(key => caches.delete(key)));
+}
+
+self.addEventListener("message", (event) => {
+  if (event.data !== "prepare-offline") return;
+  warmingCache ??= warmOfflineCache().finally(() => { warmingCache = undefined; });
+  event.waitUntil(warmingCache.catch(() => undefined));
 });
 
 self.addEventListener("fetch", (event) => {
@@ -63,7 +83,15 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         })
-        .catch(() => Response.error());
+        .catch(async () => {
+          const keys = await caches.keys();
+          for (const key of keys.reverse()) {
+            if (key === CACHE_NAME || !key.startsWith(CACHE_PREFIX)) continue;
+            const response = await (await caches.open(key)).match(event.request, { ignoreVary: true });
+            if (response) return response;
+          }
+          return Response.error();
+        });
     })
   );
 });

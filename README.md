@@ -23,7 +23,7 @@ npm run preview
 
 El build de Pages usa `/JP2168/` por defecto. Puede configurarse con `PAGES_BASE_PATH`.
 El workflow `.github/workflows/` compila y despliega `dist/` al enviar cambios a `main`.
-La presentación busca actualizaciones al abrirse, al volver al primer plano, al recuperar conexión y cada minuto mientras está visible. Recarga la app cuando la nueva versión ya está disponible sin conexión. El contenido publicado se detecta por los cambios en `public/content/project.json`. Si hay contenido editado y guardado en la tablet, el administrador permite reemplazarlo con «Sincronizar desde GitHub».
+La presentación busca actualizaciones al abrirse, al volver al primer plano, al recuperar conexión y cada minuto mientras está visible. Recarga la app en cuanto está lista la interfaz de la nueva versión y prepara el contenido sin conexión en segundo plano. El contenido publicado se detecta por los cambios en `public/content/project.json`. Si hay ediciones locales guardadas, se conserva una copia descargable en Configuración antes de aplicar el contenido publicado.
 En GitHub, Pages debe usar GitHub Actions como origen. La configuración remota y el despliegue
 real deben verificarse en GitHub. URL prevista: https://pcovinos1.github.io/JP2168/
 

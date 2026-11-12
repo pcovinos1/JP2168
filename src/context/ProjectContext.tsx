@@ -45,12 +45,12 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
 
   const syncFromRemote = useCallback(async (replaceLocal = false) => {
     const current = activeProject.current;
-    if (!current || syncing.current || (!replaceLocal && (current.localEditedAt || !canApplyPublishedUpdate()))) return null;
+    if (!current || syncing.current || !canApplyPublishedUpdate()) return null;
     syncing.current = true;
     try {
       const remote = await fetchRemoteProject(replaceLocal ? undefined : current, true);
       if (!remote || current !== activeProject.current || !canApplyPublishedUpdate()) return null;
-      if (!await savePublishedProject(remote, replaceLocal)) return null;
+      if (!await savePublishedProject(remote, current, replaceLocal)) return null;
       if (current === activeProject.current) setProject(remote);
       return remote;
     } finally {
