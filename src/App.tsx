@@ -25,8 +25,18 @@ const menuItems: Array<{ view: ViewKey; title: string; text: string }> = [
   { view: "contact", title: "Contacto", text: "Información comercial." }
 ];
 
+const presentationPin = "664";
+const presentationSessionKey = "jp2168-presentation-session";
+
 export default function App() {
   const { project: storedProject, loading, updateProject, reload, syncFromRemote } = useProject();
+  const [hasPresentationAccess, setHasPresentationAccess] = useState(() => {
+    try {
+      return window.sessionStorage.getItem(presentationSessionKey) === "unlocked";
+    } catch {
+      return false;
+    }
+  });
   const [view, setView] = useState<ViewKey>("home");
   const [selectedTypologyId, setSelectedTypologyId] = useState("jp-flat-x-01");
   const [gallery, setGallery] = useState<{ images: GalleryImage[]; index: number } | null>(null);
@@ -35,6 +45,17 @@ export default function App() {
   const navigate = (next: ViewKey) => {
     setView(next);
   };
+
+  if (!hasPresentationAccess) {
+    return <PresentationLogin onUnlock={() => {
+      try {
+        window.sessionStorage.setItem(presentationSessionKey, "unlocked");
+      } catch {
+        // The presentation can still open if browser storage is unavailable.
+      }
+      setHasPresentationAccess(true);
+    }} />;
+  }
 
   if (loading || !project) {
     return <div className="grid min-h-screen place-items-center bg-paper text-ink">Cargando Javier Prado Oeste 2168...</div>;
@@ -63,6 +84,42 @@ export default function App() {
       {view === "contact" && <ContactPage project={project} />}
       {view === "admin" && <AdminPage project={project} updateProject={updateProject} reload={reload} syncFromRemote={syncFromRemote} onExit={() => navigate("home")} />}
       {gallery ? <GalleryModal images={gallery.images} initialIndex={gallery.index} onClose={() => setGallery(null)} /> : null}
+    </main>
+  );
+}
+
+function PresentationLogin({ onUnlock }: { onUnlock: () => void }) {
+  const [pin, setPin] = useState("");
+  const [incorrect, setIncorrect] = useState(false);
+
+  return (
+    <main className="grid min-h-dvh place-items-center bg-paper px-6 py-12 text-ink">
+      <form className="w-full max-w-sm rounded border border-ink/10 bg-porcelain p-6" onSubmit={event => {
+        event.preventDefault();
+        if (pin === presentationPin) onUnlock();
+        else setIncorrect(true);
+      }}>
+        <Lock className="mb-4 text-morada" aria-hidden="true" />
+        <h1 className="font-display text-3xl">Javier Prado Oeste 2168</h1>
+        <label className="mt-6 block" htmlFor="presentation-pin">PIN de acceso</label>
+        <input
+          id="presentation-pin"
+          className="field"
+          type="password"
+          inputMode="numeric"
+          maxLength={3}
+          value={pin}
+          aria-invalid={incorrect}
+          aria-describedby={incorrect ? "presentation-pin-error" : undefined}
+          onChange={event => {
+            setPin(event.target.value);
+            setIncorrect(false);
+          }}
+          required
+        />
+        {incorrect && <p id="presentation-pin-error" className="mt-2 text-sm text-red-700" role="alert">PIN incorrecto.</p>}
+        <button className="primary-touch mt-4 w-full" type="submit">Iniciar sesión</button>
+      </form>
     </main>
   );
 }
